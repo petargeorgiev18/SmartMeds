@@ -2,16 +2,25 @@
 using SmartMeds.Core.Interfaces;
 using SmartMeds.Data;
 using SmartMeds.Data.Entities;
+using CentralAPI;
+using CentralAPI.Interfaces;
 
 namespace SmartMeds.Core.Implementation
 {
     public class ListingService : IListingService
     {
         private readonly SmartMedsDbContext _context;
+        private readonly IListings _listingsAPI;
 
-        public ListingService(SmartMedsDbContext context)
+        public ListingService(SmartMedsDbContext context, IListings listings)
         {
             _context = context;
+            _listingsAPI = listings;
+        }
+
+        public async Task<List<Listing>> FetchMyListingsAsync()
+        {
+            return await _listingsAPI.GetMyListings(1); //TODO: Change with actual hospital id
         }
 
         public async Task<IEnumerable<Listing>> GetAllListingsAsync()

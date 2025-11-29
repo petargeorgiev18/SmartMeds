@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CentralAPI\CentralAPI.csproj" />
     <ProjectReference Include="..\SmartMeds.Data\SmartMeds.Data.csproj" />
   </ItemGroup>
 

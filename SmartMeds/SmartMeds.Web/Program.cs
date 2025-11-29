@@ -1,3 +1,5 @@
+using CentralAPI.Implementations;
+using CentralAPI.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmartMeds.Core.Implementation;
@@ -27,6 +29,9 @@ namespace SmartMeds.Web
             builder.Services.AddScoped<IMedicineService, MedicineService>();
             builder.Services.AddScoped<IRequestService, RequestService>();
             builder.Services.AddScoped<IListingService, ListingService>();
+
+            builder.Services.AddHttpClient();
+            builder.Services.AddScoped<IListings, ListingImpl>();
 
             var app = builder.Build();
 

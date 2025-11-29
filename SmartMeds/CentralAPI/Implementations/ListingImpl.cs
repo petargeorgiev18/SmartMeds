@@ -1,4 +1,5 @@
-﻿using CentralAPI.Interfaces;
+﻿using CentralAPI.DTOs;
+using CentralAPI.Interfaces;
 using Newtonsoft.Json;
 using SmartMeds.Data.Entities;
 using System;
@@ -13,7 +14,7 @@ namespace CentralAPI.Implementations
 {
     public class ListingImpl : IListings
     {
-        const string BASE_URL = "localhost:8080/listings";
+        const string BASE_URL = "http://localhost:8080/listings";
         private readonly HttpClient _httpClient;
 
         public ListingImpl(IHttpClientFactory httpClientFactory)
@@ -45,7 +46,18 @@ namespace CentralAPI.Implementations
 
         public async Task<List<Listing>> GetMyListings(long hospitalId)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.GetAsync(BASE_URL + "/get-by-hospital/" + hospitalId);
+            response.EnsureSuccessStatusCode();
+
+            string json = await response.Content.ReadAsStringAsync();
+
+            List<ListingDTO> listings = JsonConvert.DeserializeObject<List<ListingDTO>>(json);
+            if (listings == null)
+                return new List<Listing>();
+
+            return listings
+                .Select(x => x.ToListing())
+                .ToList();
         }
 
         public async Task<List<Listing>> GetOtherListings(long hospitalId)
@@ -55,7 +67,13 @@ namespace CentralAPI.Implementations
 
             string json = await response.Content.ReadAsStringAsync();
 
-            return new List<Listing>();
+            List<ListingDTO> listings = JsonConvert.DeserializeObject<List<ListingDTO>>(json);
+            if (listings == null)
+                return new List<Listing>();
+
+            return listings
+                .Select(x => x.ToListing())
+                .ToList();
         }
     }
 }

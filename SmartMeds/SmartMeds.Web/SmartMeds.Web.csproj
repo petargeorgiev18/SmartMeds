@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CentralAPI\CentralAPI.csproj" />
     <ProjectReference Include="..\SmartMeds.Core\SmartMeds.Core.csproj" />
     <ProjectReference Include="..\SmartMeds.Data\SmartMeds.Data.csproj" />
   </ItemGroup>

@@ -16,7 +16,8 @@ namespace SmartMeds.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var listings = await _listingService.GetAllListingsAsync();
+            //var listings = await _listingService.GetAllListingsAsync();
+            var listings = await _listingService.FetchMyListingsAsync();
 
             var model = listings.Select(l => new ListingViewModel
             {
