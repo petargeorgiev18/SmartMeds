@@ -12,4 +12,8 @@ public class ListingRepository implements PanacheRepository<Listing> {
     public List<Listing> findAllByHospitalId(Long hospitalId){
         return list("hospital.id", hospitalId);
     }
+
+    public List<Listing> findAllNotByHospitalId(Long hospitalId) {
+        return list("hospital.id != ?1", hospitalId);
+    }
 }

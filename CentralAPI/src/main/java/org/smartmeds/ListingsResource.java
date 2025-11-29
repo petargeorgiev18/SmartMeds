@@ -62,6 +62,18 @@ public class ListingsResource {
     }
 
     @GET
+    @Path("/get-not-by-hospital")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllNotByHospitalId(@QueryParam("hospitalId") Long hospitalId){
+        try{
+            List<Listing> listings = service.getListingsNotByHospital(hospitalId);
+            return Response.ok().entity(listings).build();
+        }catch (Exception ex){
+            return Response.serverError().build();
+        }
+    }
+
+    @GET
     @Path("/get/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getListingById(@PathParam("id") Long id){

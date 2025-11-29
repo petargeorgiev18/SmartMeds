@@ -49,4 +49,7 @@ public class ListingService {
         repo.deleteById(id);
     }
 
+    public List<Listing> getListingsNotByHospital(Long hospitalId) {
+        return repo.findAllNotByHospitalId(hospitalId);
+    }
 }
