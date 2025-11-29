@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SmartMeds.Core.Interfaces;
+using SmartMeds.Data.Entities;
 using SmartMeds.Web.Models;
 
 namespace SmartMeds.Web.Controllers
@@ -62,6 +65,66 @@ namespace SmartMeds.Web.Controllers
             });
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            var listings = await _listingService.GetAllListingsAsync();
+
+            var medicines = listings
+                .Select(l => l.Medicine)
+                .Where(m => m != null)
+                .Distinct()
+                .ToList();
+
+            var model = new CreateListingViewModel
+            {
+                MedicineOptions = medicines
+                    .Select(m => new SelectListItem
+                    {
+                        Value = m!.Id.ToString(),
+                        Text = m.ExternalMedicineId
+                    })
+                    .ToList()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CreateListingViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var listings = await _listingService.GetAllListingsAsync();
+                var medicines = listings
+                    .Select(l => l.Medicine)
+                    .Where(m => m != null)
+                    .Distinct()
+                    .ToList();
+
+                model.MedicineOptions = medicines
+                    .Select(m => new SelectListItem
+                    {
+                        Value = m!.Id.ToString(),
+                        Text = m.ExternalMedicineId
+                    })
+                    .ToList();
+
+                return View(model);
+            }
+
+            var listing = new Listing
+            {
+                Id = Guid.NewGuid(),
+                MedicineId = model.MedicineId,
+                Price = model.Price
+            };
+
+            await _listingService.CreateListingAsync(listing);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

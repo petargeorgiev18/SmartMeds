@@ -1,0 +1,32 @@
+﻿@model CreateListingViewModel
+
+@{
+    ViewData["Title"] = "Create Listing";
+}
+
+<h2>Create Listing</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="MedicineId" class="form-label">Medicine</label>
+        <select asp-for="MedicineId" class="form-select" asp-items="Model.MedicineOptions">
+            <option value="">-- Select Medicine --</option>
+        </select>
+        <span asp-validation-for="MedicineId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Price" class="form-label">Price (lv)</label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

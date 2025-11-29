@@ -47,5 +47,11 @@ namespace SmartMeds.Core.Implementation
                 .AsNoTracking()
                 .ToListAsync();
         }
+
+        public async Task CreateListingAsync(Listing listing)
+        {
+            _context.Listings.Add(listing);
+            await _context.SaveChangesAsync();
+        }
     }
 }
