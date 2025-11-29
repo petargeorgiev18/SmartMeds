@@ -5,7 +5,7 @@ using SmartMeds.Data.Entities;
 
 namespace SmartMeds.Data
 {
-    public class SmartMedsDbContext : IdentityDbContext<SmartMedsUser, IdentityRole<Guid>, Guid>
+    public class SmartMedsDbContext : IdentityDbContext<SmartMedsUser, IdentityRole<long>, long>
     {
         public SmartMedsDbContext(DbContextOptions<SmartMedsDbContext> options)
             : base(options)
@@ -31,6 +31,11 @@ namespace SmartMeds.Data
                 .HasForeignKey(r => r.ToHospitalId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<SmartMedsUser>()
+                .HasOne(u => u.Hospital)
+                .WithMany()
+                .HasForeignKey(u => u.HospitalId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

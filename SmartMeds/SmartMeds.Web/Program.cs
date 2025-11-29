@@ -25,7 +25,6 @@ namespace SmartMeds.Web
                 .AddEntityFrameworkStores<SmartMedsDbContext>();
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddScoped<IHospitalService, HospitalService>();
             builder.Services.AddScoped<IMedicineService, MedicineService>();
             builder.Services.AddScoped<IRequestService, RequestService>();
             builder.Services.AddScoped<IListingService, ListingService>();

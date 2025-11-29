@@ -31,7 +31,7 @@ namespace SmartMeds.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(Guid id)
+        public async Task<IActionResult> Details(long id)
         {
             var m = await _medicineService.GetMedicineByIdAsync(id);
             if (m == null)

@@ -26,7 +26,7 @@ namespace SmartMeds.Core.Implementation
                 .ToListAsync();
         }
 
-        public async Task<Medicine?> GetMedicineByIdAsync(Guid id)
+        public async Task<Medicine?> GetMedicineByIdAsync(long id)
         {
             return await _context.Medicines
                 .AsNoTracking()

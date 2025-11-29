@@ -2,10 +2,10 @@
 
 namespace SmartMeds.Data.Entities
 {
-    public class SmartMedsUser : IdentityUser<Guid>
+    public class SmartMedsUser : IdentityUser<long>
     {
         public string FullName { get; set; } = null!;
-        public Guid? HospitalId { get; set; }
+        public long? HospitalId { get; set; }
         public Hospital? Hospital { get; set; }
     }
 }

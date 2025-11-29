@@ -24,7 +24,7 @@ namespace SmartMeds.Core.Implementation
                 .ToListAsync();
         }
 
-        public async Task<Request?> GetRequestByIdAsync(Guid id)
+        public async Task<Request?> GetRequestByIdAsync(long id)
         {
             return await _context.Requests
                 .Include(r => r.FromHospital)
@@ -43,7 +43,7 @@ namespace SmartMeds.Core.Implementation
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Request>> GetRequestsForHospitalAsync(Guid hospitalId)
+        public async Task<IEnumerable<Request>> GetRequestsForHospitalAsync(long hospitalId)
         {
             return await _context.Requests
                 .Include(r => r.FromHospital)
@@ -53,7 +53,7 @@ namespace SmartMeds.Core.Implementation
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Request>> GetPendingRequestsForHospitalAsync(Guid hospitalId)
+        public async Task<IEnumerable<Request>> GetPendingRequestsForHospitalAsync(long hospitalId)
         {
             return await _context.Requests
                 .Include(r => r.FromHospital)

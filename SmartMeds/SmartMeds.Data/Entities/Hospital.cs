@@ -8,7 +8,7 @@ namespace SmartMeds.Data.Entities
 {
     public class Hospital
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; } = null!;
         public string City {  get; set; } = null!;
         public string Address { get; set; } = null!;

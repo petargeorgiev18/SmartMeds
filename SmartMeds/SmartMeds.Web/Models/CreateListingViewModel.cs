@@ -9,7 +9,7 @@ namespace SmartMeds.Web.Models
     {
         [Required]
         [Display(Name = "Medicine")]
-        public Guid MedicineId { get; set; }
+        public long MedicineId { get; set; }
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Price must be positive.")]
         public decimal Price { get; set; }

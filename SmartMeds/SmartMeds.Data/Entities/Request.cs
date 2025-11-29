@@ -10,11 +10,11 @@ namespace SmartMeds.Data.Entities
 {
     public class Request
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
         [ForeignKey(nameof(FromHospital))]    
-        public Guid FromHospitalId { get; set; }
+        public long FromHospitalId { get; set; }
         [ForeignKey(nameof(ToHospital))]
-        public Guid ToHospitalId { get; set; }
+        public long ToHospitalId { get; set; }
         public Hospital FromHospital { get; set; } = null!;
         public Hospital ToHospital { get; set; } = null!;
         public string ExternalMedicineId { get; set; }

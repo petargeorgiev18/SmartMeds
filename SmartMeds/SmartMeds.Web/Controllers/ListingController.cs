@@ -34,7 +34,7 @@ namespace SmartMeds.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(Guid id)
+        public async Task<IActionResult> Details(long id)
         {
             var listing = await _listingService.GetListingByIdAsync(id);
             if (listing == null)
@@ -52,7 +52,7 @@ namespace SmartMeds.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ByMedicine(Guid medicineId)
+        public async Task<IActionResult> ByMedicine(long medicineId)
         {
             var listings = await _listingService.GetListingsByMedicineIdAsync(medicineId);
 
@@ -118,7 +118,6 @@ namespace SmartMeds.Web.Controllers
 
             var listing = new Listing
             {
-                Id = Guid.NewGuid(),
                 MedicineId = model.MedicineId,
                 Price = model.Price
             };

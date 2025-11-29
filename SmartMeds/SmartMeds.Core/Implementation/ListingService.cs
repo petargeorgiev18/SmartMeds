@@ -31,7 +31,7 @@ namespace SmartMeds.Core.Implementation
                 .ToListAsync();
         }
 
-        public async Task<Listing?> GetListingByIdAsync(Guid id)
+        public async Task<Listing?> GetListingByIdAsync(long id)
         {
             return await _context.Listings
                 .Include(l => l.Medicine)
@@ -39,7 +39,7 @@ namespace SmartMeds.Core.Implementation
                 .FirstOrDefaultAsync(l => l.Id == id);
         }
 
-        public async Task<IEnumerable<Listing>> GetListingsByMedicineIdAsync(Guid medicineId)
+        public async Task<IEnumerable<Listing>> GetListingsByMedicineIdAsync(long medicineId)
         {
             return await _context.Listings
                 .Include(l => l.Medicine)

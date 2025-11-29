@@ -35,7 +35,7 @@ namespace SmartMeds.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Pending(Guid? hospitalId = null)
+        public async Task<IActionResult> Pending(long? hospitalId = null)
         {
             IEnumerable<Data.Entities.Request> requests;
 
