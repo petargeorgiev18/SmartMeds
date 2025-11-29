@@ -16,4 +16,8 @@ public class HospitalService {
         repo.persist(hospital);
         return hospital;
     }
+
+    public Hospital getById(Long id) {
+        return repo.findById(id);
+    }
 }

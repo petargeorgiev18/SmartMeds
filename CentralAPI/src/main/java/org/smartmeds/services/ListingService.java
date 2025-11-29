@@ -34,4 +34,14 @@ public class ListingService {
     public List<Listing> getAll() {
         return repo.listAll();
     }
+
+    public List<Listing> getListingsByHospital(Long hospitalId) {
+        List<Listing> res = repo.findAllByHospitalId(hospitalId);
+        System.out.println(res);
+        return res;
+    }
+
+    public Listing getById(Long id) {
+        return repo.findById(id);
+    }
 }
