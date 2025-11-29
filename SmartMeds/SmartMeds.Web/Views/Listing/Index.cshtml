@@ -1,28 +1,25 @@
-﻿@model IEnumerable<SmartMeds.Data.Entities.Listing>
+﻿@model IEnumerable<SmartMeds.Web.Models.ListingViewModel>
 
-    <h2 class="mb-3">All Listings</h2>
+<h2 class="mb-3">Listings</h2>
 
-    <table class="table table-striped table-hover">
-        <thead>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Medicine</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var l in Model)
+        {
             <tr>
-                <th>Medicine</th>
-                <th>Hospital</th>
-                <th>Price</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var l in Model)
-    {
-            <tr>
-                <td>@l.Medicine?.Name</td>
-                <td>@l.Hospital?.Name</td>
-                <td>@l.Price.ToString("0.00") лв</td>
+                <td>@l.MedicineName</td>
+                <td>@l.Price.ToString("C")</td>
                 <td>
                     <a class="btn btn-sm btn-primary" href="/Listing/Details/@l.Id">Details</a>
                 </td>
             </tr>
-    }
-        </tbody>
-    </table>
-
+        }
+    </tbody>
+</table>

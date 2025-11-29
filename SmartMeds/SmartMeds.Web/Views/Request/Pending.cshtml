@@ -1,8 +1,8 @@
-﻿@model IEnumerable<SmartMeds.Data.Entities.Request>
+﻿@model IEnumerable<SmartMeds.Web.Models.RequestViewModel>
 
-    <h2>Pending Requests</h2>
+<h2>Pending Requests</h2>
 
-    @if (!Model.Any())
+@if (!Model.Any())
 {
     <p>No pending requests.</p>
 }
@@ -14,21 +14,19 @@ else
                 <th>From</th>
                 <th>To</th>
                 <th>Medicine</th>
-                <th>Quantity</th>
                 <th>Status</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var r in Model)
-        {
-            <tr>
-                <td>@r.FromHospital?.Name</td>
-                <td>@r.ToHospital?.Name</td>
-                <td>@r.Medicine?.Name</td>
-                <td>@r.Quantity</td>
-                <td>@r.Status</td>
-            </tr>
-        }
+            {
+                <tr>
+                    <td>@r.FromHospitalName</td>
+                    <td>@r.ToHospitalName</td>
+                    <td>@r.MedicineName</td>
+                    <td>@r.Status</td>
+                </tr>
+            }
         </tbody>
     </table>
 }

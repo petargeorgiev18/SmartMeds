@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmartMeds.Core.Interfaces;
 using SmartMeds.Data.Enums;
+using SmartMeds.Web.Models;
 
 namespace SmartMeds.Web.Controllers
 {
@@ -13,37 +14,53 @@ namespace SmartMeds.Web.Controllers
             _requestService = requestService;
         }
 
-        // GET: /Request/
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var requests = await _requestService.GetAllRequestsAsync();
-            return View(requests);
+
+            var vm = requests.Select(r => new RequestViewModel
+            {
+                Id = r.Id,
+                FromHospitalId = r.FromHospitalId,
+                FromHospitalName = r.FromHospital.Name,
+                ToHospitalId = r.ToHospitalId,
+                ToHospitalName = r.ToHospital.Name,
+                MedicineName = r.ExternalMedicineId, 
+                Status = r.Status,
+                CreatedOn = DateTime.Now
+            });
+
+            return View(vm);
         }
 
-        // GET: /Request/Details/{id}
-        [HttpGet]
-        public async Task<IActionResult> Details(Guid id)
-        {
-            var request = await _requestService.GetRequestByIdAsync(id);
-            if (request == null)
-                return NotFound();
-
-            return View(request);
-        }
-
-        // GET: /Request/Pending?hospitalId={id}
         [HttpGet]
         public async Task<IActionResult> Pending(Guid? hospitalId = null)
         {
+            IEnumerable<Data.Entities.Request> requests;
+
             if (hospitalId.HasValue)
             {
-                var pending = await _requestService.GetPendingRequestsForHospitalAsync(hospitalId.Value);
-                return View(pending);
+                requests = await _requestService.GetPendingRequestsForHospitalAsync(hospitalId.Value);
+            }
+            else
+            {
+                requests = await _requestService.GetRequestsByStatusAsync(RequestStatus.Pending);
             }
 
-            var allPending = await _requestService.GetRequestsByStatusAsync(RequestStatus.Pending);
-            return View(allPending);
+            var vm = requests.Select(r => new RequestViewModel
+            {
+                Id = r.Id,
+                FromHospitalId = r.FromHospitalId,
+                FromHospitalName = r.FromHospital.Name,
+                ToHospitalId = r.ToHospitalId,
+                ToHospitalName = r.ToHospital.Name,
+                MedicineName = r.ExternalMedicineId, 
+                Status = r.Status,
+                CreatedOn = DateTime.Now
+            });
+
+            return View(vm);
         }
     }
 }
