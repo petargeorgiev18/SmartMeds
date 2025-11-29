@@ -1,27 +1,29 @@
-﻿@model IEnumerable<SmartMeds.Data.Entities.Medicine>
+﻿@model IEnumerable<SmartMeds.Web.Models.MedicineViewModel>
 
-    <h2 class="mb-3">Medicines</h2>
+<h2 class="mb-3">Medicines</h2>
 
-    <table class="table table-hover">
-        <thead>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>External ID</th>
+            <th>Quantity</th>
+            <th>Expiration</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
             <tr>
-                <th>Name</th>
-                <th>Barcode</th>
-                <th>Expiration</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var m in Model)
-    {
-            <tr>
-                <td>@m.Name</td>
-                <td>@m.Barcode</td>
+                <td>@m.ExternalMedicineId</td>
+                <td>@m.Quantity</td>
                 <td>@m.ExpirationDate.ToShortDateString()</td>
+                <td>@m.Status</td>
                 <td>
-                    <a class="btn btn-sm btn-secondary" href="/Medicine/Details/@m.Id">Details</a>
+                    <a class="btn btn-sm btn-primary" href="/Medicine/Details/@m.Id">Details</a>
                 </td>
             </tr>
-    }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>

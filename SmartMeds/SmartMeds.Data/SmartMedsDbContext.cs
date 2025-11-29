@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SmartMeds.Data.Entities;
 
 namespace SmartMeds.Data
 {
-    public class SmartMedsDbContext : DbContext
+    public class SmartMedsDbContext : IdentityDbContext<SmartMedsUser, IdentityRole<Guid>, Guid>
     {
         public SmartMedsDbContext(DbContextOptions<SmartMedsDbContext> options)
             : base(options)

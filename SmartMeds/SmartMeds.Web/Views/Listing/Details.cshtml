@@ -1,10 +1,6 @@
-﻿@model SmartMeds.Data.Entities.Listing
+﻿@model SmartMeds.Web.Models.ListingViewModel
 
 <h2>Listing Details</h2>
 
-<p><strong>Medicine:</strong> @Model.Medicine?.Name</p>
-<p><strong>Hospital:</strong> @Model.Hospital?.Name</p>
-<p><strong>City:</strong> @Model.Hospital?.City</p>
-<p><strong>Price:</strong> @Model.Price.ToString("0.00") лв</p>
-
-<a class="btn btn-secondary mt-3" href="/Listing">Back to Listings</a>
+<p><strong>Medicine:</strong> @Model.MedicineName</p>
+<p><strong>Price:</strong> @Model.Price.ToString("C")</p>

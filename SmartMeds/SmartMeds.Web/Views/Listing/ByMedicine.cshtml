@@ -1,8 +1,8 @@
-﻿@model IEnumerable<SmartMeds.Data.Entities.Listing>
+﻿@model IEnumerable<SmartMeds.Web.Models.ListingViewModel>
 
-    <h2>Listings for Selected Medicine</h2>
+<h2>Listings for Selected Medicine</h2>
 
-    @if (!Model.Any())
+@if (!Model.Any())
 {
     <p>No listings found for this medicine.</p>
 }
@@ -12,25 +12,21 @@ else
         <thead>
             <tr>
                 <th>Medicine</th>
-                <th>Hospital</th>
-                <th>City</th>
                 <th>Price</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var l in Model)
-        {
-            <tr>
-                <td>@l.Medicine?.Name</td>
-                <td>@l.Hospital?.Name</td>
-                <td>@l.Hospital?.City</td>
-                <td>@l.Price.ToString("0.00") lv</td>
-                <td>
-                    <a class="btn btn-sm btn-primary" href="/Listing/Details/@l.Id">Details</a>
-                </td>
-            </tr>
-        }
+            {
+                <tr>
+                    <td>@l.MedicineName</td>
+                    <td>@l.Price.ToString("0.00") lv</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="/Listing/Details/@l.Id">Details</a>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 }
