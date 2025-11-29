@@ -1,7 +1,10 @@
-package org.smartmeds;
+package org.smartmeds.models.entities;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 
 /**
@@ -24,6 +27,10 @@ import jakarta.persistence.Entity;
  * }
  */
 @Entity
-public class MyEntity extends PanacheEntity {
+public class MyEntity extends PanacheEntityBase {
+    @Id
+    @GeneratedValue
+    public Long id;
+
     public String field;
 }
