@@ -44,4 +44,9 @@ public class ListingService {
     public Listing getById(Long id) {
         return repo.findById(id);
     }
+
+    public void delete(Long id) {
+        repo.deleteById(id);
+    }
+
 }

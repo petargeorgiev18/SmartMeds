@@ -16,6 +16,10 @@ public class CreateListing {
     public LocalDate expiration;
 
     @NotNull
+    @Positive
+    public Integer quantity;
+
+    @NotNull
     @Column(unique = true)
     public Long medicineFK;
 
@@ -24,6 +28,7 @@ public class CreateListing {
         res.setPrice(price);
         res.setExpiration(expiration);
         res.setMedicineFK(medicineFK);
+        res.setQuantity(quantity);
 
         return res;
     }

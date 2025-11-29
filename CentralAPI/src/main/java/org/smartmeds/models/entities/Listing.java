@@ -3,6 +3,7 @@ package org.smartmeds.models.entities;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.smallrye.common.constraint.NotNull;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import org.hibernate.validator.constraints.UniqueElements;
@@ -18,6 +19,11 @@ public class Listing extends PanacheEntityBase {
     @NotNull
     @Positive
     Double price;
+
+    @NotNull
+    @Positive
+    @Min(1)
+    Integer quantity;
 
     @NotNull
     LocalDate expiration;
@@ -67,5 +73,13 @@ public class Listing extends PanacheEntityBase {
 
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
+    }
+
+    public @Positive @Min(1) Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(@Positive @Min(1) Integer quantity) {
+        this.quantity = quantity;
     }
 }

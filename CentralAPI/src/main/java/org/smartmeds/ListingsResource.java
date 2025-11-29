@@ -74,4 +74,18 @@ public class ListingsResource {
             return Response.serverError().build();
         }
     }
+
+    @DELETE
+    @Path("/delete/{id}")
+    @Transactional
+    public Response deleteListingById(@PathParam("id") Long id){
+        try{
+            if(service.getById(id) == null)
+                return Response.status(404).build();
+            service.delete(id);
+            return Response.noContent().build();
+        }catch (Exception ex){
+            return Response.serverError().build();
+        }
+    }
 }
