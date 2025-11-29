@@ -7,5 +7,6 @@ namespace SmartMeds.Core.Interfaces
         Task<IEnumerable<Listing>> GetAllListingsAsync();
         Task<Listing?> GetListingByIdAsync(Guid id);
         Task<IEnumerable<Listing>> GetListingsByMedicineIdAsync(Guid medicineId);
+        Task CreateListingAsync(Listing listing);
     }
 }
