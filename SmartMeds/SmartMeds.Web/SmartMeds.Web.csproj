@@ -24,8 +24,4 @@
     <ProjectReference Include="..\SmartMeds.Data\SmartMeds.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Request\" />
-  </ItemGroup>
-
 </Project>
