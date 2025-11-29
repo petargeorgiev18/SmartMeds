@@ -33,14 +33,15 @@ namespace SmartMeds.Core.Implementation
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IEnumerable<Medicine>> GetMedicinesCloseToExpirationAsync(int daysThreshold = 30)
+        public async Task<IEnumerable<Medicine>> GetMedicinesCloseToExpirationAsync(int daysThreshold)
         {
             var today = DateTime.Today;
+            var thresholdDate = today.AddDays(daysThreshold);
 
             return await _context.Medicines
-                .AsNoTracking()
-                .Where(m => (m.ExpirationDate - today).TotalDays <= daysThreshold && m.ExpirationDate >= today)
+                .Where(m => m.ExpirationDate >= today && m.ExpirationDate <= thresholdDate)
                 .ToListAsync();
         }
+
     }
 }

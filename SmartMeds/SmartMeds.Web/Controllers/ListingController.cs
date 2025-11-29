@@ -13,6 +13,7 @@ namespace SmartMeds.Web.Controllers
             _listingService = listingService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var listings = await _listingService.GetAllListingsAsync();
@@ -21,13 +22,14 @@ namespace SmartMeds.Web.Controllers
             {
                 Id = l.Id,
                 MedicineId = l.MedicineId,
-                MedicineName = l.Medicine.ExternalMedicineId,
+                MedicineName = l.Medicine?.ExternalMedicineId ?? "N/A",
                 Price = l.Price
             });
 
             return View(model);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
             var listing = await _listingService.GetListingByIdAsync(id);
@@ -38,13 +40,14 @@ namespace SmartMeds.Web.Controllers
             {
                 Id = listing.Id,
                 MedicineId = listing.MedicineId,
-                MedicineName = listing.Medicine.ExternalMedicineId,
+                MedicineName = listing.Medicine?.ExternalMedicineId ?? "N/A",
                 Price = listing.Price
             };
 
             return View(model);
         }
 
+        [HttpGet]
         public async Task<IActionResult> ByMedicine(Guid medicineId)
         {
             var listings = await _listingService.GetListingsByMedicineIdAsync(medicineId);
@@ -53,7 +56,7 @@ namespace SmartMeds.Web.Controllers
             {
                 Id = l.Id,
                 MedicineId = l.MedicineId,
-                MedicineName = l.Medicine.ExternalMedicineId,
+                MedicineName = l.Medicine?.ExternalMedicineId ?? "N/A",
                 Price = l.Price
             });
 
