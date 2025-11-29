@@ -11,5 +11,7 @@ namespace SmartMeds.Data.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string City {  get; set; }
+        public ICollection<Request> SentRequests { get; set; } = new List<Request>();
+        public ICollection<Request> ReceivedRequests { get; set; } = new List<Request>();
     }
 }
