@@ -87,4 +87,40 @@ public class RequestResource {
             return Response.serverError().build();
         }
     }
+
+    @GET
+    @Path("/get-to-hospital/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getToHospital(@PathParam("id")Long id) {
+        try{
+            List<Request> res = service.getAllToHospital(id);
+            return Response.ok().entity(res).build();
+        }catch (Exception e){
+            return Response.serverError().build();
+        }
+    }
+
+    @GET
+    @Path("/get-from-hospital/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFromHospital(@PathParam("id")Long id) {
+        try{
+            List<Request> res = service.getAllFromHospital(id);
+            return Response.ok().entity(res).build();
+        }catch (Exception e){
+            return Response.serverError().build();
+        }
+    }
+
+    @GET
+    @Path("/get-about-hospital/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAboutHospital(@PathParam("id")Long id) {
+        try{
+            List<Request> res = service.getAllAboutHospital(id);
+            return Response.ok().entity(res).build();
+        }catch (Exception e){
+            return Response.serverError().build();
+        }
+    }
 }

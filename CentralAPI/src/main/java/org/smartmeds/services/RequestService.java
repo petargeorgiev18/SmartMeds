@@ -47,4 +47,16 @@ public class RequestService {
         repo.persist(request);
         return request;
     }
+
+    public List<Request> getAllToHospital(Long id) {
+        return repo.getAllToHospital(id);
+    }
+
+    public List<Request> getAllFromHospital(Long id) {
+        return repo.getAllFromHospital(id);
+    }
+
+    public List<Request> getAllAboutHospital(Long id) {
+        return repo.getAllAboutHospital(id);
+    }
 }
