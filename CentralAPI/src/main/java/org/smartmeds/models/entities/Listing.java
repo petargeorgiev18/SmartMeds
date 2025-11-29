@@ -28,7 +28,7 @@ public class Listing extends PanacheEntityBase {
 
     @NotNull
     @Column(unique = true)
-    Long MedicineFK;
+    Long medicineFK;
 
     @ManyToOne
     Hospital hospital;
@@ -58,11 +58,11 @@ public class Listing extends PanacheEntityBase {
     }
 
     public Long getMedicineFK() {
-        return MedicineFK;
+        return medicineFK;
     }
 
     public void setMedicineFK(Long medicineFK) {
-        MedicineFK = medicineFK;
+        this.medicineFK = medicineFK;
     }
 
     public Hospital getHospital() {
