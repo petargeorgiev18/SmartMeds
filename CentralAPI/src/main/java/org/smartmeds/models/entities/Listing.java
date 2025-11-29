@@ -4,9 +4,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.smallrye.common.constraint.NotNull;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.time.LocalDate;
 
@@ -26,7 +24,7 @@ public class Listing extends PanacheEntityBase {
     Integer quantity;
 
     @NotNull
-    LocalDate expiration;
+    LocalDate expirationDate;
 
     @NotNull
     @Column(unique = true)
@@ -51,12 +49,12 @@ public class Listing extends PanacheEntityBase {
         this.price = price;
     }
 
-    public LocalDate getExpiration() {
-        return expiration;
+    public LocalDate getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setExpiration(LocalDate expiration) {
-        this.expiration = expiration;
+    public void setExpirationDate(LocalDate expiration) {
+        this.expirationDate = expiration;
     }
 
     public Long getMedicineFK() {
