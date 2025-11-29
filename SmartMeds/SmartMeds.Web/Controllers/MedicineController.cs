@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmartMeds.Core.Interfaces;
+using SmartMeds.Web.Models;
 
 namespace SmartMeds.Web.Controllers
 {
@@ -12,32 +13,59 @@ namespace SmartMeds.Web.Controllers
             _medicineService = medicineService;
         }
 
-        // GET: /Medicine/
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var medicines = await _medicineService.GetAllMedicinesAsync();
-            return View(medicines);
+
+            var model = medicines.Select(m => new MedicineViewModel
+            {
+                Id = m.Id,
+                ExternalMedicineId = m.ExternalMedicineId,
+                Quantity = m.Quantity,
+                ExpirationDate = m.ExpirationDate,
+                Status = m.Status
+            });
+
+            return View(model);
         }
 
-        // GET: /Medicine/Details/{id}
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
-            var medicine = await _medicineService.GetMedicineByIdAsync(id);
-            if (medicine == null)
+            var m = await _medicineService.GetMedicineByIdAsync(id);
+            if (m == null)
                 return NotFound();
 
-            return View(medicine);
+            var model = new MedicineViewModel
+            {
+                Id = m.Id,
+                ExternalMedicineId = m.ExternalMedicineId,
+                Quantity = m.Quantity,
+                ExpirationDate = m.ExpirationDate,
+                Status = m.Status
+            };
+
+            return View(model);
         }
 
-        // GET: /Medicine/CloseToExpiration
         [HttpGet]
         public async Task<IActionResult> CloseToExpiration(int days = 30)
         {
             var medicines = await _medicineService.GetMedicinesCloseToExpirationAsync(days);
+
+            var model = medicines.Select(m => new MedicineViewModel
+            {
+                Id = m.Id,
+                ExternalMedicineId = m.ExternalMedicineId,
+                Quantity = m.Quantity,
+                ExpirationDate = m.ExpirationDate,
+                Status = m.Status
+            });
+
             ViewBag.DaysThreshold = days;
-            return View(medicines);
+
+            return View(model);
         }
     }
 }

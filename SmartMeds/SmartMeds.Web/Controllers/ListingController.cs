@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmartMeds.Core.Interfaces;
+using SmartMeds.Web.Models;
 
 namespace SmartMeds.Web.Controllers
 {
@@ -15,7 +16,16 @@ namespace SmartMeds.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var listings = await _listingService.GetAllListingsAsync();
-            return View(listings);
+
+            var model = listings.Select(l => new ListingViewModel
+            {
+                Id = l.Id,
+                MedicineId = l.MedicineId,
+                MedicineName = l.Medicine.ExternalMedicineId,
+                Price = l.Price
+            });
+
+            return View(model);
         }
 
         public async Task<IActionResult> Details(Guid id)
@@ -24,13 +34,30 @@ namespace SmartMeds.Web.Controllers
             if (listing == null)
                 return NotFound();
 
-            return View(listing);
+            var model = new ListingViewModel
+            {
+                Id = listing.Id,
+                MedicineId = listing.MedicineId,
+                MedicineName = listing.Medicine.ExternalMedicineId,
+                Price = listing.Price
+            };
+
+            return View(model);
         }
 
         public async Task<IActionResult> ByMedicine(Guid medicineId)
         {
             var listings = await _listingService.GetListingsByMedicineIdAsync(medicineId);
-            return View(listings);
+
+            var model = listings.Select(l => new ListingViewModel
+            {
+                Id = l.Id,
+                MedicineId = l.MedicineId,
+                MedicineName = l.Medicine.ExternalMedicineId,
+                Price = l.Price
+            });
+
+            return View(model);
         }
     }
 }

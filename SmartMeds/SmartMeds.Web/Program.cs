@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SmartMeds.Core.Implementation;
+using SmartMeds.Core.Interfaces;
 using SmartMeds.Data;
+using SmartMeds.Data.Entities;
 
 namespace SmartMeds.Web
 {
@@ -16,9 +19,14 @@ namespace SmartMeds.Web
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<SmartMedsUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<SmartMedsDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IHospitalService, HospitalService>();
+            builder.Services.AddScoped<IMedicineService, MedicineService>();
+            builder.Services.AddScoped<IRequestService, RequestService>();
+            builder.Services.AddScoped<IListingService, ListingService>();
 
             var app = builder.Build();
 
