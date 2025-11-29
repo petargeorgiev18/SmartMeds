@@ -1,0 +1,12 @@
+﻿@model SmartMeds.Data.Entities.Request
+
+<h2>Request Details</h2>
+
+<p><strong>From:</strong> @Model.FromHospital?.Name</p>
+<p><strong>To:</strong> @Model.ToHospital?.Name</p>
+<p><strong>Medicine:</strong> @Model.Medicine?.Name</p>
+<p><strong>Quantity:</strong> @Model.Quantity</p>
+<p><strong>Status:</strong> @Model.Status</p>
+
+<a class="btn btn-secondary mt-3" href="/Request">Back</a>
+

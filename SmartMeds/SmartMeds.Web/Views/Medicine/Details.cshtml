@@ -1,0 +1,9 @@
+﻿@model SmartMeds.Data.Entities.Medicine
+
+<h2>@Model.Name</h2>
+
+<p><strong>Barcode:</strong> @Model.Barcode</p>
+<p><strong>Expiration:</strong> @Model.ExpirationDate.ToShortDateString()</p>
+<p><strong>Description:</strong> @Model.Description</p>
+
+<a class="btn btn-primary mt-3" href="/Medicine">Back</a>
