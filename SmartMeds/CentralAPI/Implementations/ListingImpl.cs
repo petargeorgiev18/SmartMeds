@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CentralAPI.Implementations
 {
-    internal class ListingImpl : IListings
+    public class ListingImpl : IListings
     {
         const string BASE_URL = "localhost:8080/listings";
         private readonly HttpClient _httpClient;
@@ -43,14 +43,19 @@ namespace CentralAPI.Implementations
             throw new NotImplementedException();
         }
 
-        public Task<List<Listing>> GetMyListings(long hospitalId)
+        public async Task<List<Listing>> GetMyListings(long hospitalId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<Listing>> GetOtherListings(long hospitalId)
+        public async Task<List<Listing>> GetOtherListings(long hospitalId)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.GetAsync(BASE_URL + "/get-not-by-hospital/" + hospitalId);
+            response.EnsureSuccessStatusCode();
+
+            string json = await response.Content.ReadAsStringAsync();
+
+            return new List<Listing>();
         }
     }
 }

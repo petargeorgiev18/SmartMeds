@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMeds.Core", "..\SmartM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentralAPI", "..\CentralAPI\CentralAPI.csproj", "{9FEE5593-A5D1-4B3F-A65D-CE877DDA9306}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APITests", "..\APITests\APITests.csproj", "{47ED02E4-3E78-4AB5-8517-F9F4FA5934FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,8 +35,15 @@ Global
 		{9FEE5593-A5D1-4B3F-A65D-CE877DDA9306}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FEE5593-A5D1-4B3F-A65D-CE877DDA9306}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FEE5593-A5D1-4B3F-A65D-CE877DDA9306}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47ED02E4-3E78-4AB5-8517-F9F4FA5934FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47ED02E4-3E78-4AB5-8517-F9F4FA5934FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47ED02E4-3E78-4AB5-8517-F9F4FA5934FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47ED02E4-3E78-4AB5-8517-F9F4FA5934FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78E4E5F1-5DBD-4E82-B898-08ED105EA36B}
 	EndGlobalSection
 EndGlobal
