@@ -50,9 +50,9 @@ public class ListingsResource {
     }
 
     @GET
-    @Path("/get-by-hospital")
+    @Path("/get-by-hospital/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllByHospitalId(@QueryParam("hospitalId") Long hospitalId){
+    public Response getAllByHospitalId(@PathParam("id") Long hospitalId){
         try{
             List<Listing> listings = service.getListingsByHospital(hospitalId);
             return Response.ok().entity(listings).build();
@@ -62,9 +62,9 @@ public class ListingsResource {
     }
 
     @GET
-    @Path("/get-not-by-hospital")
+    @Path("/get-not-by-hospital/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllNotByHospitalId(@QueryParam("hospitalId") Long hospitalId){
+    public Response getAllNotByHospitalId(@PathParam("id") Long hospitalId){
         try{
             List<Listing> listings = service.getListingsNotByHospital(hospitalId);
             return Response.ok().entity(listings).build();
