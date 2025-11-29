@@ -1,5 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<SmartMeds.Data.Entities.Request>
+
+    <h2 class="mb-3">Requests</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Medicine</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model)
+    {
+            <tr>
+                <td>@r.FromHospital?.Name</td>
+                <td>@r.ToHospital?.Name</td>
+                <td>@r.Medicine?.Name</td>
+                <td>@r.Quantity</td>
+                <td>@r.Status</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="/Request/Details/@r.Id">Details</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>

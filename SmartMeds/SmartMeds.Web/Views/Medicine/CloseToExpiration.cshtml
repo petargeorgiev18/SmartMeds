@@ -1,5 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model IEnumerable<SmartMeds.Data.Entities.Medicine>
+
+    <h2>Medicines expiring in the next @ViewBag.DaysThreshold days</h2>
+
+    @if (!Model.Any())
+{
+    <p>No medicines are close to expiration.</p>
+}
+else
+{
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Expiration Date</th>
+                <th>Days Left</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+        {
+            var daysLeft = (m.ExpirationDate - DateTime.Now).Days;
+            <tr>
+                <td>@m.Name</td>
+                <td>@m.ExpirationDate.ToShortDateString()</td>
+                <td>@daysLeft</td>
+            </tr>
+        }
+        </tbody>
+    </table>
 }
