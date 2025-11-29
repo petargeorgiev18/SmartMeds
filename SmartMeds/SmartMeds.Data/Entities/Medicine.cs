@@ -10,10 +10,11 @@ namespace SmartMeds.Data.Entities
 {
     public class Medicine
     {
-        public Guid Id { get; set; }    
-        public string ExternalMedicineId { get; set; }
+        public Guid Id { get; set; }
+        public string ExternalMedicineId { get; set; } = null!;
         public int Quantity { get;set; }
         public DateTime ExpirationDate { get; set; }
+        public ICollection<Listing> Listings { get; set; } = null!;
         public StockStatus Status
         {
             get

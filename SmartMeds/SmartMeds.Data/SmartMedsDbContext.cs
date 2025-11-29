@@ -12,6 +12,7 @@ namespace SmartMeds.Data
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<Request> Requests { get; set; }
+        public DbSet<Listing> Listings { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
