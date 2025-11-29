@@ -8,6 +8,8 @@ import org.smartmeds.models.requests.CreateRequest;
 import org.smartmeds.repositories.HospitalRepository;
 import org.smartmeds.repositories.RequestRepository;
 
+import java.util.List;
+
 @ApplicationScoped
 public class RequestService {
     @Inject
@@ -24,6 +26,24 @@ public class RequestService {
         Request request = data.toRequest();
         request.setFrom(from);
         request.setTo(to);
+        repo.persist(request);
+        return request;
+    }
+
+    public Request getById(Long id) {
+        return repo.findById(id);
+    }
+
+    public List<Request> getAll() {
+        return repo.listAll();
+    }
+
+    public void remove(Long id) {
+        repo.deleteById(id);
+    }
+
+    public Request updateStatus(Request request, String status) {
+        request.setStatus(status);
         repo.persist(request);
         return request;
     }

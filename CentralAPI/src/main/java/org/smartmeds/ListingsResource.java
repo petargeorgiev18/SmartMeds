@@ -81,9 +81,9 @@ public class ListingsResource {
     public Response deleteListingById(@PathParam("id") Long id){
         try{
             if(service.getById(id) == null)
-                return Response.status(404).build();
+                return Response.noContent().build();
             service.delete(id);
-            return Response.noContent().build();
+            return Response.ok().build();
         }catch (Exception ex){
             return Response.serverError().build();
         }
