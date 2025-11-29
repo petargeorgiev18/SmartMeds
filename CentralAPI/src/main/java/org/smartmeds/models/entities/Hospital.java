@@ -32,6 +32,6 @@ public class Hospital extends PanacheEntityBase {
 
     //FKs
 
-    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<Listing> listings;
 }

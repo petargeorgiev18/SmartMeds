@@ -16,16 +16,13 @@ public class Listing extends PanacheEntityBase {
     public Long id;
 
     @NotNull
-    @NotEmpty
     @Positive
     Double price;
 
     @NotNull
-    @NotEmpty
     LocalDate expiration;
 
     @NotNull
-    @NotEmpty
     @Column(unique = true)
     Long MedicineFK;
 
@@ -40,27 +37,27 @@ public class Listing extends PanacheEntityBase {
         this.id = id;
     }
 
-    public @NotEmpty @Positive Double getPrice() {
+    public @Positive Double getPrice() {
         return price;
     }
 
-    public void setPrice(@NotEmpty @Positive Double price) {
+    public void setPrice(@Positive Double price) {
         this.price = price;
     }
 
-    public @NotEmpty LocalDate getExpiration() {
+    public LocalDate getExpiration() {
         return expiration;
     }
 
-    public void setExpiration(@NotEmpty LocalDate expiration) {
+    public void setExpiration(LocalDate expiration) {
         this.expiration = expiration;
     }
 
-    public @NotEmpty Long getMedicineFK() {
+    public Long getMedicineFK() {
         return MedicineFK;
     }
 
-    public void setMedicineFK(@NotEmpty Long medicineFK) {
+    public void setMedicineFK(Long medicineFK) {
         MedicineFK = medicineFK;
     }
 

@@ -8,6 +8,7 @@ import org.smartmeds.models.requests.CreateListing;
 import org.smartmeds.repositories.HospitalRepository;
 import org.smartmeds.repositories.ListingRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
@@ -28,5 +29,9 @@ public class ListingService {
         listing.setHospital(hospital.get());
         repo.persist(listing);
         return listing;
+    }
+
+    public List<Listing> getAll() {
+        return repo.listAll();
     }
 }

@@ -10,24 +10,20 @@ import java.time.LocalDate;
 
 public class CreateListing {
     @NotNull
-    @NotEmpty
     @Positive
-    Double price;
+    public Double price;
+
+    public LocalDate expiration;
 
     @NotNull
-    @NotEmpty
-    LocalDate expiration;
-
-    @NotNull
-    @NotEmpty
     @Column(unique = true)
-    Long MedicineFK;
+    public Long medicineFK;
 
     public Listing toListing() {
         Listing res = new Listing();
         res.setPrice(price);
         res.setExpiration(expiration);
-        res.setMedicineFK(MedicineFK);
+        res.setMedicineFK(medicineFK);
 
         return res;
     }
