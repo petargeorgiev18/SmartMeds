@@ -94,15 +94,15 @@ namespace SmartMeds.Web.Controllers
                 return View(model);
             }
 
-            var res = await _barcodeEncoder.GetTitleByBarcode(model.imageUrl);
+            var res = await _barcodeEncoder.GetTitleByBarcode(model.ImageUrl);
 
             var medicine = new Medicine
             {
                 ExternalMedicineId = model.ExternalMedicineId,
                 Quantity = model.Quantity,
                 ExpirationDate = model.ExpirationDate,
-                Id: res.id,
-                Name: res.title
+                Id = res.id,
+                Name = res.title
             };
 
             await _medicineService.AddMedicineAsync(medicine);
