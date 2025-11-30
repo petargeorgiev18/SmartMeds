@@ -5,23 +5,50 @@
 
 <h2>Medicines close to expiration (within @days days)</h2>
 
-<table class="table table-striped">
-    <thead>
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
         <tr>
             <th>External ID</th>
             <th>Quantity</th>
             <th>Expiration</th>
             <th>Status</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var m in Model)
+        @if (Model.Any())
+        {
+            foreach (var m in Model)
+            {
+                var isClose = (m.ExpirationDate - DateTime.Now).TotalDays <= days;
+                <tr class="@(isClose ? "table-warning" : "")">
+                    <td>@m.ExternalMedicineId</td>
+                    <td>@m.Quantity</td>
+                    <td>@m.ExpirationDate.ToShortDateString()</td>
+                    <td>
+                        @if (m.Status == "Expired")
+                        {
+                            <span class="badge bg-danger">@m.Status</span>
+                        }
+                        else if (m.Status == "Low Stock")
+                        {
+                            <span class="badge bg-warning text-dark">@m.Status</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">@m.Status</span>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="/Medicine/Details/@m.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>@m.ExternalMedicineId</td>
-                <td>@m.Quantity</td>
-                <td>@m.ExpirationDate.ToShortDateString()</td>
-                <td>@m.Status</td>
+                <td colspan="5" class="text-center">No medicines close to expiration.</td>
             </tr>
         }
     </tbody>

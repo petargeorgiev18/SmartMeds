@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BarcodeAPI.Implementation;
+using BarcodeAPI.Interfaces;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Mvc;
 using SmartMeds.Core.Interfaces;
 using SmartMeds.Data.Entities;
 using SmartMeds.Web.Models;
@@ -8,6 +11,7 @@ namespace SmartMeds.Web.Controllers
     public class MedicineController : Controller
     {
         private readonly IMedicineService _medicineService;
+        private readonly IBarcodeEncoder _barcodeEncoder;
 
         public MedicineController(IMedicineService medicineService)
         {
@@ -90,11 +94,15 @@ namespace SmartMeds.Web.Controllers
                 return View(model);
             }
 
+            var res = await _barcodeEncoder.GetTitleByBarcode(model.imageUrl);
+
             var medicine = new Medicine
             {
                 ExternalMedicineId = model.ExternalMedicineId,
                 Quantity = model.Quantity,
-                ExpirationDate = model.ExpirationDate
+                ExpirationDate = model.ExpirationDate,
+                Id: res.id,
+                Name: res.title
             };
 
             await _medicineService.AddMedicineAsync(medicine);

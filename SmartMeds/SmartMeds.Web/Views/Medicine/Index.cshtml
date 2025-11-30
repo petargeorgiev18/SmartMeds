@@ -1,29 +1,62 @@
 ﻿@model IEnumerable<MedicineViewModel>
 
-<h2 class="mb-3">Medicines</h2>
+@{
+    ViewData["Title"] = "Medicines";
+}
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>External ID</th>
-            <th>Quantity</th>
-            <th>Expiration</th>
-            <th>Status</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var m in Model)
-        {
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Medicines</h2>
+        <a class="btn btn-success" href="/Medicine/Create">Add New Medicine</a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
             <tr>
-                <td>@m.ExternalMedicineId</td>
-                <td>@m.Quantity</td>
-                <td>@m.ExpirationDate.ToShortDateString()</td>
-                <td>@m.Status</td>
-                <td>
-                    <a class="btn btn-sm btn-primary" href="/Medicine/Details/@m.Id">Details</a>
-                </td>
+                <th>External ID</th>
+                <th>Quantity</th>
+                <th>Expiration</th>
+                <th>Status</th>
+                <th>Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (var m in Model)
+                {
+                    <tr>
+                        <td>@m.ExternalMedicineId</td>
+                        <td>@m.Quantity</td>
+                        <td>@m.ExpirationDate.ToShortDateString()</td>
+                        <td>
+                            @if (m.Status == "Expired")
+                            {
+                                <span class="badge bg-danger">@m.Status</span>
+                            }
+                            else if (m.Status == "Low Stock")
+                            {
+                                <span class="badge bg-warning">@m.Status</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">@m.Status</span>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-primary" href="/Medicine/Details/@m.Id">Details</a>
+                            <a class="btn btn-sm btn-warning" href="/Medicine/Edit/@m.Id">Edit</a>
+                            <a class="btn btn-sm btn-danger" href="/Medicine/Delete/@m.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No medicines available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

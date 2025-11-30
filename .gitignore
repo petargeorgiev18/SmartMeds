@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 ./CentralAPI/target
+/SmartMeds/SmartMeds.Web/appsettings.json

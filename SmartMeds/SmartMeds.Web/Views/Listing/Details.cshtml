@@ -1,6 +1,18 @@
 ﻿@model ListingViewModel
 
-<h2>Listing Details</h2>
-
-<p><strong>Medicine:</strong> @Model.MedicineName</p>
-<p><strong>Price:</strong> @Model.Price.ToString("C")</p>
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3>Listing Details</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Medicine:</strong> @Model.MedicineName</p>
+            <p><strong>Price:</strong> @Model.Price.ToString("C")</p>
+        </div>
+        <div class="card-footer d-flex gap-2">
+            <a href="/Listing" class="btn btn-secondary">Back</a>
+            <a href="/Listing/Edit/@Model.Id" class="btn btn-warning">Edit</a>
+            <a href="/Listing/Delete/@Model.Id" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
