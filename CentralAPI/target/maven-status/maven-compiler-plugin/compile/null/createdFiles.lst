@@ -1,0 +1,16 @@
+org\smartmeds\models\requests\CreateRequest.class
+org\smartmeds\services\RequestService.class
+org\smartmeds\models\requests\CreateListing.class
+org\smartmeds\models\entities\MyEntity.class
+org\smartmeds\models\entities\Request.class
+org\smartmeds\repositories\ListingRepository.class
+org\smartmeds\models\entities\Listing.class
+org\smartmeds\RequestResource.class
+org\smartmeds\HospitalResource.class
+org\smartmeds\ListingsResource.class
+org\smartmeds\services\ListingService.class
+org\smartmeds\services\HospitalService.class
+org\smartmeds\models\entities\Hospital.class
+org\smartmeds\models\requests\CreateHospital.class
+org\smartmeds\repositories\HospitalRepository.class
+org\smartmeds\repositories\RequestRepository.class
