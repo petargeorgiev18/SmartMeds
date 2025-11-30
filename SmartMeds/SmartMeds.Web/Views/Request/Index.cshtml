@@ -1,25 +1,55 @@
 ﻿@model IEnumerable<RequestViewModel>
 
-<h2 class="mb-3">Requests</h2>
+<div class="container mt-4">
+    <h2 class="mb-3">Requests</h2>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>From Hospital</th>
-            <th>To Hospital</th>
-            <th>Status</th>
-            <th>Created On</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var r in Model)
-        {
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
             <tr>
-                <td>@r.FromHospitalName</td>
-                <td>@r.ToHospitalName</td>
-                <td>@r.Status</td>
-                <td>@r.CreatedOn.ToShortDateString()</td>
+                <th>From Hospital</th>
+                <th>To Hospital</th>
+                <th>Status</th>
+                <th>Created On</th>
+                <th>Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (var r in Model)
+                {
+                    <tr>
+                        <td>@r.FromHospitalName</td>
+                        <td>@r.ToHospitalName</td>
+                        <td>
+                            @if (r.Status == "Pending")
+                            {
+                                <span class="badge bg-warning text-dark">@r.Status</span>
+                            }
+                            else if (r.Status == "Approved")
+                            {
+                                <span class="badge bg-success">@r.Status</span>
+                            }
+                            else if (r.Status == "Rejected")
+                            {
+                                <span class="badge bg-danger">@r.Status</span>
+                            }
+                        </td>
+                        <td>@r.CreatedOn.ToShortDateString()</td>
+                        <td>
+                            <a class="btn btn-sm btn-primary" href="/Request/Details/@r.Id">Details</a>
+                            <a class="btn btn-sm btn-warning" href="/Request/Edit/@r.Id">Edit</a>
+                            <a class="btn btn-sm btn-danger" href="/Request/Delete/@r.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No requests found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

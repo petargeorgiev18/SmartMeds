@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BarcodeAPI.Implementation
 {
-    internal class BarcodeEncoder : IBarcodeEncoder
+    public class BarcodeEncoder : IBarcodeEncoder
     {
         private readonly HttpClient _httpClient;
 

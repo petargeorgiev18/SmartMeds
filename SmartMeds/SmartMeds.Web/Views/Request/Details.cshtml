@@ -1,10 +1,38 @@
 ﻿@model RequestViewModel
 
-<h2>Request Details</h2>
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3>Request Details</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>From:</strong> @Model.FromHospitalName</p>
+            <p><strong>To:</strong> @Model.ToHospitalName</p>
+            <p><strong>Medicine:</strong> @Model.MedicineName</p>
+            <p>
+                <strong>Status:</strong>
+                @{
+                    @if (Model.Status == RequestStatus.Pending)
+                    {
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    }
+                    else if (Model.Status == RequestStatus.Completed)
+                    {
+                        <span class="badge bg-success">Approved</span>
+                    }
+                    else if (Model.Status == RequestStatus.Declined)
+                    {
+                        <span class="badge bg-danger">Rejected</span>
+                    }
 
-<p><strong>From:</strong> @Model.FromHospitalName</p>
-<p><strong>To:</strong> @Model.ToHospitalName</p>
-<p><strong>Medicine:</strong> @Model.MedicineName</p>
-<p><strong>Status:</strong> @Model.Status</p>
+                }
+            </p>
 
-<a class="btn btn-secondary mt-3" href="/Request">Back</a>
+        </div>
+        <div class="card-footer d-flex gap-2">
+            <a class="btn btn-secondary" href="/Request">Back</a>
+            <a class="btn btn-warning" href="/Request/Edit/@Model.Id">Edit</a>
+            <a class="btn btn-danger" href="/Request/Delete/@Model.Id">Delete</a>
+        </div>
+    </div>
+</div>
