@@ -19,4 +19,8 @@ public class RequestRepository implements PanacheRepository<Request> {
     public List<Request> getAllAboutHospital(Long id) {
         return find("to.id = ?1 OR from.id = ?1", id).list();
     }
+
+    public List<Request> getAllAboutHospitalByStatus(Long id, String status) {
+        return find("to.id = ?1 AND status = ?2", id, status).list();
+    }
 }

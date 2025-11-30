@@ -10,7 +10,7 @@ namespace CentralAPI.DTOs
     internal class ListingDTO
     {
         public long id { get; set; }
-        public decimal price { get; set; }
+        public double price { get; set; }
         public int quantity { get; set; }
         public string expirationDate { get; set; }
         public long medicineFK { get; set; }

@@ -59,4 +59,7 @@ public class RequestService {
     public List<Request> getAllAboutHospital(Long id) {
         return repo.getAllAboutHospital(id);
     }
+    public List<Request> getAllAboutHospitalByStatus(Long id, String status) {
+        return repo.getAllAboutHospitalByStatus(id, status);
+    }
 }

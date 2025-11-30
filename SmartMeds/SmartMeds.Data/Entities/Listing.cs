@@ -13,7 +13,8 @@ namespace SmartMeds.Data.Entities
         [ForeignKey(nameof(Medicine))]
         public long MedicineId { get; set; }
         public Medicine? Medicine { get; set; } = null;
-        public decimal Price { get; set; }
+        public double Price { get; set; }
+        public int Quantity { get; set; }
 
     }
 }
