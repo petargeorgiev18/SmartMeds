@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmartMeds.Core.Implementation
 {
-    internal class RequestServiceCentralImpl : IRequestService
+    public class RequestServiceCentralImpl : IRequestService
     {
         public Task<IEnumerable<Request>> GetAllRequestsAsync()
         {
