@@ -17,5 +17,8 @@ namespace SmartMeds.Web.Models
         [DataType(DataType.Date)]
         [Display(Name = "Expiration Date")]
         public DateTime ExpirationDate { get; set; }
+
+        [Required]
+        public string ImageUrl { get; set; }
     }
 }
