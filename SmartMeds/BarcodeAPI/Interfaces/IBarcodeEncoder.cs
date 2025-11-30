@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BarcodeAPI.Implementation;
 
 namespace BarcodeAPI.Interfaces
 {
@@ -11,6 +12,6 @@ namespace BarcodeAPI.Interfaces
     {
         Task<BarcodeResponseFormat> GetTitleByBarcode(string imageUrl);
 
-        Task<Boolean> CheckHealth();
+        Task<bool> CheckHealth();
     }
 }
