@@ -19,7 +19,7 @@
                 var isClose = daysLeft <= days;
 
                 <div class="col-md-4">
-                    <div class="card shadow-sm border-0" style="border-radius:12px; background-color:@(isClose ? "#fff3cd" : "#f4f9f9");">
+                    <div class="card medicine-card shadow-sm border-0" style="background: @(isClose ? "linear-gradient(135deg, #fff3cd, #ffeeba)" : "#f4f9f9");">
                         <div class="card-body">
                             <h5 class="card-title">@m.ExternalMedicineId</h5>
                             <p><strong>Quantity:</strong> @m.Quantity</p>
@@ -29,15 +29,15 @@
                                 @switch (m.Status)
                                 {
                                     case StockStatus.Expired:
-                                        <span class="badge" style="background-color:#f8d7da; color:#842029;">Expired</span>
+                                        <span class="badge status-badge expired" title="This medicine has expired ❌">❌ Expired</span>
                                         ;
                                         break;
                                     case StockStatus.CloseToExpiration:
-                                        <span class="badge" style="background-color:#fff3cd; color:#856404;">Close to Expiration</span>
+                                        <span class="badge status-badge warning" title="Expires soon ⚠️">⚠️ Close to Expiration</span>
                                         ;
                                         break;
                                     case StockStatus.Good:
-                                        <span class="badge" style="background-color:#d1e7dd; color:#0f5132;">In Stock</span>
+                                        <span class="badge status-badge good" title="In stock ✅">✅ In Stock</span>
                                         ;
                                         break;
                                 }
@@ -52,3 +52,50 @@
         </div>
     }
 </div>
+
+<style>
+    /* Card Styling */
+    .medicine-card {
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .medicine-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+    /* Badge Styling */
+    .status-badge {
+        padding: 5px 10px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+        .status-badge.expired {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+
+        .status-badge.warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-badge.good {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+
+    /* Button Hover Animations */
+    .btn-outline-primary {
+        transition: 0.2s;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+</style>

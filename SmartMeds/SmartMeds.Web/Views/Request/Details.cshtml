@@ -1,9 +1,9 @@
 ﻿@model RequestViewModel
 
-<div class="container mt-4">
-    <div class="card shadow-sm border-0" style="border-radius:12px; background-color:#f4f9f9;">
-        <div class="card-header" style="background-color:#a2d5f2; color:#004080; border-radius:12px 12px 0 0;">
-            <h3 class="mb-0">Request Details</h3>
+<div class="container mt-5">
+    <div class="card request-card shadow-sm">
+        <div class="card-header">
+            <h3>Request Details</h3>
         </div>
         <div class="card-body">
             <p><strong>From:</strong> @Model.FromHospitalName</p>
@@ -14,24 +14,103 @@
                 @switch (Model.Status)
                 {
                     case RequestStatus.Pending:
-                        <span class="badge" style="background-color:#fff3cd; color:#856404;">Pending</span>
+                        <span class="badge status-pending">Pending</span>
                         ;
                         break;
                     case RequestStatus.Completed:
-                        <span class="badge" style="background-color:#d1e7dd; color:#0f5132;">Approved</span>
+                        <span class="badge status-approved">Approved</span>
                         ;
                         break;
                     case RequestStatus.Declined:
-                        <span class="badge" style="background-color:#f8d7da; color:#842029;">Rejected</span>
+                        <span class="badge status-rejected">Rejected</span>
                         ;
                         break;
                 }
             </p>
         </div>
         <div class="card-footer d-flex gap-2">
-            <a class="btn btn-secondary" href="/Request">Back</a>
-            <a class="btn btn-outline-warning" href="/Request/Edit/@Model.Id">Edit</a>
-            <a class="btn btn-outline-danger" href="/Request/Delete/@Model.Id">Delete</a>
+            <a class="btn btn-secondary btn-custom" href="/Request">Back</a>
+            <a class="btn btn-warning btn-custom-outline" href="/Request/Edit/@Model.Id">Edit</a>
+            <a class="btn btn-danger btn-custom-outline" href="/Request/Delete/@Model.Id">Delete</a>
         </div>
     </div>
 </div>
+
+<style>
+    /* Card Styling */
+    .request-card {
+        border-radius: 16px;
+        overflow: hidden;
+        background: linear-gradient(145deg, #e3f2fd, #ffffff);
+        border: none;
+        transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+        .request-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .request-card .card-header {
+            background: linear-gradient(90deg, #42a5f5, #1e88e5);
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.25rem;
+            text-align: center;
+            border-radius: 16px 16px 0 0;
+            padding: 15px;
+        }
+
+    /* Status Badges */
+    .badge {
+        padding: 6px 12px;
+        border-radius: 12px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: transform 0.2s;
+    }
+
+    .status-pending {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .status-approved {
+        background-color: #d1e7dd;
+        color: #0f5132;
+    }
+
+    .status-rejected {
+        background-color: #f8d7da;
+        color: #842029;
+    }
+
+    .badge:hover {
+        transform: scale(1.05);
+    }
+
+    /* Buttons */
+    .btn-custom {
+        border-radius: 12px;
+        padding: 8px 16px;
+        transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+    .btn-custom-outline {
+        border-radius: 12px;
+        padding: 8px 16px;
+        background: none;
+        border: 2px solid currentColor;
+        transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+        .btn-custom-outline:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+</style>
