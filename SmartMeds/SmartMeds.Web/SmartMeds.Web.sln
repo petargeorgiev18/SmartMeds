@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMeds.Core", "..\SmartM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentralAPI", "..\CentralAPI\CentralAPI.csproj", "{9FEE5593-A5D1-4B3F-A65D-CE877DDA9306}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APITests", "..\APITests\APITests.csproj", "{47ED02E4-3E78-4AB5-8517-F9F4FA5934FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeAPI", "..\BarcodeAPI\BarcodeAPI.csproj", "{A044FEB7-6CC6-4F59-94C2-4A120F1C22C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{9FEE5593-A5D1-4B3F-A65D-CE877DDA9306}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FEE5593-A5D1-4B3F-A65D-CE877DDA9306}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FEE5593-A5D1-4B3F-A65D-CE877DDA9306}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47ED02E4-3E78-4AB5-8517-F9F4FA5934FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47ED02E4-3E78-4AB5-8517-F9F4FA5934FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47ED02E4-3E78-4AB5-8517-F9F4FA5934FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47ED02E4-3E78-4AB5-8517-F9F4FA5934FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A044FEB7-6CC6-4F59-94C2-4A120F1C22C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A044FEB7-6CC6-4F59-94C2-4A120F1C22C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A044FEB7-6CC6-4F59-94C2-4A120F1C22C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A044FEB7-6CC6-4F59-94C2-4A120F1C22C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
