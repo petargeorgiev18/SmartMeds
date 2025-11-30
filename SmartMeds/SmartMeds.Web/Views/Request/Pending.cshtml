@@ -1,54 +1,50 @@
 ﻿@model IEnumerable<RequestViewModel>
 
-<h2>Pending Requests</h2>
+<div class="container mt-4">
+    <h2 class="mb-4">Pending Requests</h2>
 
-@if (!Model.Any())
-{
-    <div class="alert alert-info">No pending requests.</div>
-}
-else
-{
-    <table class="table table-striped table-hover mt-3">
-        <thead class="table-dark">
-            <tr>
-                <th>From</th>
-                <th>To</th>
-                <th>Medicine</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">No pending requests.</div>
+    }
+    else
+    {
+        <div class="row g-3">
             @foreach (var r in Model)
             {
-                <tr>
-                    <td>@r.FromHospitalName</td>
-                    <td>@r.ToHospitalName</td>
-                    <td>@r.MedicineName</td>
-                    <td>
-                        @switch (r.Status)
-                        {
-                            case RequestStatus.Pending:
-                                <span class="badge bg-warning text-dark">Pending</span>
-                                ;
-                                break;
-                            case RequestStatus.Completed:
-                                <span class="badge bg-success">Approved</span>
-                                ;
-                                break;
-                            case RequestStatus.Declined:
-                                <span class="badge bg-danger">Rejected</span>
-                                ;
-                                break;
-                        }
-                    </td>
-                    <td>
-                        <a class="btn btn-sm btn-primary" href="/Request/Details/@r.Id">Details</a>
-                        <a class="btn btn-sm btn-warning" href="/Request/Edit/@r.Id">Edit</a>
-                        <a class="btn btn-sm btn-danger" href="/Request/Delete/@r.Id">Delete</a>
-                    </td>
-                </tr>
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-0" style="border-radius:12px; background-color:#f4f9f9;">
+                        <div class="card-body">
+                            <p><strong>From:</strong> @r.FromHospitalName</p>
+                            <p><strong>To:</strong> @r.ToHospitalName</p>
+                            <p><strong>Medicine:</strong> @r.MedicineName</p>
+                            <p>
+                                <strong>Status:</strong>
+                                @switch (r.Status)
+                                {
+                                    case RequestStatus.Pending:
+                                        <span class="badge" style="background-color:#fff3cd; color:#856404;">Pending</span>
+                                        ;
+                                        break;
+                                    case RequestStatus.Completed:
+                                        <span class="badge" style="background-color:#d1e7dd; color:#0f5132;">Approved</span>
+                                        ;
+                                        break;
+                                    case RequestStatus.Declined:
+                                        <span class="badge" style="background-color:#f8d7da; color:#842029;">Rejected</span>
+                                        ;
+                                        break;
+                                }
+                            </p>
+                            <div class="d-flex gap-2 mt-2">
+                                <a class="btn btn-sm btn-outline-primary" href="/Request/Details/@r.Id">Details</a>
+                                <a class="btn btn-sm btn-outline-warning" href="/Request/Edit/@r.Id">Edit</a>
+                                <a class="btn btn-sm btn-outline-danger" href="/Request/Delete/@r.Id">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
-        </tbody>
-    </table>
-}
+        </div>
+    }
+</div>
