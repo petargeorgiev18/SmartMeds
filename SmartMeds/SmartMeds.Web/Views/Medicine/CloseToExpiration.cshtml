@@ -26,11 +26,11 @@
                     <td>@m.Quantity</td>
                     <td>@m.ExpirationDate.ToShortDateString()</td>
                     <td>
-                        @if (m.Status == "Expired")
+                        @if (m.Status == StockStatus.Expired)
                         {
                             <span class="badge bg-danger">@m.Status</span>
                         }
-                        else if (m.Status == "Low Stock")
+                        else if (m.Status == StockStatus.CloseToExpiration)
                         {
                             <span class="badge bg-warning text-dark">@m.Status</span>
                         }

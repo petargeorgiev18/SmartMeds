@@ -22,15 +22,15 @@
                         <td>@r.FromHospitalName</td>
                         <td>@r.ToHospitalName</td>
                         <td>
-                            @if (r.Status == "Pending")
+                            @if (r.Status == RequestStatus.Pending)
                             {
                                 <span class="badge bg-warning text-dark">@r.Status</span>
                             }
-                            else if (r.Status == "Approved")
+                            else if (r.Status == RequestStatus.Accepted)
                             {
                                 <span class="badge bg-success">@r.Status</span>
                             }
-                            else if (r.Status == "Rejected")
+                            else if (r.Status == RequestStatus.Declined)
                             {
                                 <span class="badge bg-danger">@r.Status</span>
                             }

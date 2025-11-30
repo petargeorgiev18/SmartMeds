@@ -11,11 +11,11 @@
             <p><strong>Expiration:</strong> @Model.ExpirationDate.ToShortDateString()</p>
             <p>
                 <strong>Status:</strong>
-                @if (Model.Status == "Expired")
+                @if (Model.Status == StockStatus.Expired)
                 {
                     <span class="badge bg-danger">@Model.Status</span>
                 }
-                else if (Model.Status == "Low Stock")
+                else if (Model.Status == StockStatus.CloseToExpiration)
                 {
                     <span class="badge bg-warning text-dark">@Model.Status</span>
                 }
