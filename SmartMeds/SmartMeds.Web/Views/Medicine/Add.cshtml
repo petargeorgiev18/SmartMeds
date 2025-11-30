@@ -9,14 +9,6 @@
 
             <form asp-action="Add" method="post">
 
-                <!-- DROPDOWN -->
-                <div class="form-group mb-3">
-                    <label class="form-label">Select Existing Medicine</label>
-                    <select asp-for="SelectedMedicineId" asp-items="Model.Medicines" class="form-select custom-select">
-                        <option value="">-- Select Medicine --</option>
-                    </select>
-                </div>
-
                 <div class="form-group mb-3">
                     <label asp-for="Quantity" class="form-label">Quantity</label>
                     <input asp-for="Quantity" class="form-control custom-input" placeholder="Enter quantity" />
@@ -34,6 +26,8 @@
                     <input asp-for="ImageUrl" class="form-control custom-input" placeholder="Enter image URL" />
                     <span asp-validation-for="ImageUrl" class="text-danger"></span>
                 </div>
+
+                <input asp-for="ExternalMedicineId" value="-1" hidden />
 
                 <button type="submit" class="btn btn-soft-gradient mt-3">Add Medicine</button>
             </form>

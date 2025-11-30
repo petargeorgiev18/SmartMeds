@@ -14,9 +14,10 @@ namespace SmartMeds.Web.Controllers
         private readonly IMedicineService _medicineService;
         private readonly IBarcodeEncoder _barcodeEncoder;
 
-        public MedicineController(IMedicineService medicineService)
+        public MedicineController(IMedicineService medicineService, IBarcodeEncoder barcodeEncoder)
         {
             _medicineService = medicineService;
+            _barcodeEncoder = barcodeEncoder;
         }
 
         [HttpGet]
@@ -80,18 +81,9 @@ namespace SmartMeds.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var medicines = await _medicineService.GetAllMedicinesAsync();
-
             var model = new AddMedicineViewModel
             {
-                ExpirationDate = DateTime.Today.AddMonths(3),
-                Medicines = medicines
-                    .Select(m => new SelectListItem
-                    {
-                        Value = m.Id.ToString(),
-                        Text = $"{m.Name} — {m.ExpirationDate:yyyy-MM-dd}"
-                    })
-                    .ToList()
+                ExpirationDate = DateTime.Today.AddMonths(3)
             };
 
             return View(model);
@@ -103,15 +95,6 @@ namespace SmartMeds.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var medicines = await _medicineService.GetAllMedicinesAsync();
-                model.Medicines = medicines
-                    .Select(m => new SelectListItem
-                    {
-                        Value = m.Id.ToString(),
-                        Text = $"{m.Name} — {m.ExpirationDate:yyyy-MM-dd}"
-                    })
-                    .ToList();
-
                 return View(model);
             }
 
@@ -119,11 +102,10 @@ namespace SmartMeds.Web.Controllers
 
             var medicine = new Medicine
             {
-                ExternalMedicineId = model.ExternalMedicineId,
+                ExternalMedicineId = res.id.ToString(),
                 Quantity = model.Quantity,
                 ExpirationDate = model.ExpirationDate,
-                Id = res.id,
-                Name = res.title
+                Name = res.title,
             };
 
             await _medicineService.AddMedicineAsync(medicine);

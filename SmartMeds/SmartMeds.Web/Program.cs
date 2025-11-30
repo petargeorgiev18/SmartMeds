@@ -1,3 +1,5 @@
+using BarcodeAPI.Implementation;
+using BarcodeAPI.Interfaces;
 using CentralAPI.Implementations;
 using CentralAPI.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -32,6 +34,7 @@ namespace SmartMeds.Web
 
             builder.Services.AddHttpClient();
             builder.Services.AddScoped<IListings, ListingImpl>();
+            builder.Services.AddScoped<IBarcodeEncoder, BarcodeEncoder>();
 
             var app = builder.Build();
 

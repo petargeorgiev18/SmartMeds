@@ -10,10 +10,12 @@ namespace SmartMeds.Web.Controllers
     public class ListingController : Controller
     {
         private readonly IListingService _listingService;
+        private readonly IMedicineService _medicineService;
 
-        public ListingController(IListingService listingService)
+        public ListingController(IListingService listingService, IMedicineService medicineService)
         {
             _listingService = listingService;
+            _medicineService = medicineService;
         }
 
         [HttpGet]
@@ -72,13 +74,7 @@ namespace SmartMeds.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var listings = await _listingService.GetAllListingsAsync();
-
-            var medicines = listings
-                .Select(l => l.Medicine)
-                .Where(m => m != null)
-                .Distinct()
-                .ToList();
+            var medicines = await _medicineService.GetAllMedicinesAsync();
 
             var model = new CreateListingViewModel
             {
