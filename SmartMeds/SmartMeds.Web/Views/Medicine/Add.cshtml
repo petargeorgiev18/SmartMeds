@@ -25,6 +25,14 @@
                     <span asp-validation-for="ExpirationDate" class="text-danger"></span>
                 </div>
 
+    <div class="form-group">
+        <label asp-for="ImageUrl"></label>
+        <input asp-for="ImageUrl" type="date" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Add Medicine</button>
+</form>
                 <button type="submit" class="btn btn-success">Add Medicine</button>
                 <a href="/Medicine" class="btn btn-secondary ms-2">Cancel</a>
             </form>
