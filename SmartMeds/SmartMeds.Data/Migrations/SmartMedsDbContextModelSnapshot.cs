@@ -177,7 +177,7 @@ namespace SmartMeds.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Hospitals");
+                    b.ToTable("Hospitals", (string)null);
                 });
 
             modelBuilder.Entity("SmartMeds.Data.Entities.Listing", b =>
@@ -201,7 +201,7 @@ namespace SmartMeds.Data.Migrations
 
                     b.HasIndex("MedicineId");
 
-                    b.ToTable("Listings");
+                    b.ToTable("Listings", (string)null);
                 });
 
             modelBuilder.Entity("SmartMeds.Data.Entities.Medicine", b =>
@@ -228,7 +228,33 @@ namespace SmartMeds.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Medicines");
+                    b.ToTable("Medicines", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            ExpirationDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExternalMedicineId = "MED-PARA-500",
+                            Name = "Paracetamol 500mg",
+                            Quantity = 120
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            ExpirationDate = new DateTime(2025, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExternalMedicineId = "MED-IBU-200",
+                            Name = "Ibuprofen 200mg",
+                            Quantity = 80
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            ExpirationDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExternalMedicineId = "MED-AMOX-250",
+                            Name = "Amoxicillin 250mg",
+                            Quantity = 40
+                        });
                 });
 
             modelBuilder.Entity("SmartMeds.Data.Entities.Request", b =>
@@ -270,7 +296,7 @@ namespace SmartMeds.Data.Migrations
 
                     b.HasIndex("ToHospitalId");
 
-                    b.ToTable("Requests");
+                    b.ToTable("Requests", (string)null);
                 });
 
             modelBuilder.Entity("SmartMeds.Data.Entities.SmartMedsUser", b =>

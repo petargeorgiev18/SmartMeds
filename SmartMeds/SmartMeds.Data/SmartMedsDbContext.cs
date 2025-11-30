@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SmartMeds.Data.Configurations;
 using SmartMeds.Data.Entities;
 
 namespace SmartMeds.Data
@@ -36,6 +37,8 @@ namespace SmartMeds.Data
                 .WithMany()
                 .HasForeignKey(u => u.HospitalId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.ApplyConfiguration(new MedicineConfiguration());
         }
     }
 }

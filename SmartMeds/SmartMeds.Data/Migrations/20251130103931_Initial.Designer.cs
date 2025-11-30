@@ -12,8 +12,8 @@ using SmartMeds.Data;
 namespace SmartMeds.Data.Migrations
 {
     [DbContext(typeof(SmartMedsDbContext))]
-    [Migration("20251130083913_InitialMigrationWithChanges")]
-    partial class InitialMigrationWithChanges
+    [Migration("20251130103931_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -232,6 +232,32 @@ namespace SmartMeds.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Medicines");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            ExpirationDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExternalMedicineId = "MED-PARA-500",
+                            Name = "Paracetamol 500mg",
+                            Quantity = 120
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            ExpirationDate = new DateTime(2025, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExternalMedicineId = "MED-IBU-200",
+                            Name = "Ibuprofen 200mg",
+                            Quantity = 80
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            ExpirationDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExternalMedicineId = "MED-AMOX-250",
+                            Name = "Amoxicillin 250mg",
+                            Quantity = 40
+                        });
                 });
 
             modelBuilder.Entity("SmartMeds.Data.Entities.Request", b =>
@@ -250,6 +276,10 @@ namespace SmartMeds.Data.Migrations
 
                     b.Property<long>("FromHospitalId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PostedAt")
                         .HasColumnType("datetime2");

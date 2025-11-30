@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace SmartMeds.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigrationWithChanges : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -122,6 +124,7 @@ namespace SmartMeds.Data.Migrations
                     ToHospitalId = table.Column<long>(type: "bigint", nullable: false),
                     ExternalMedicineId = table.Column<long>(type: "bigint", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PostedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -247,6 +250,16 @@ namespace SmartMeds.Data.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Medicines",
+                columns: new[] { "Id", "ExpirationDate", "ExternalMedicineId", "Name", "Quantity" },
+                values: new object[,]
+                {
+                    { 1L, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MED-PARA-500", "Paracetamol 500mg", 120 },
+                    { 2L, new DateTime(2025, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "MED-IBU-200", "Ibuprofen 200mg", 80 },
+                    { 3L, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "MED-AMOX-250", "Amoxicillin 250mg", 40 }
                 });
 
             migrationBuilder.CreateIndex(
