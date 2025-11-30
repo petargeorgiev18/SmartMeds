@@ -1,10 +1,34 @@
 ﻿@model MedicineViewModel
 
-<h2>Medicine Details</h2>
-
-<p><strong>Barcode:</strong> @Model.ExternalMedicineId</p>
-<p><strong>Quantity:</strong> @Model.Quantity</p>
-<p><strong>Expiration:</strong> @Model.ExpirationDate.ToShortDateString()</p>
-<p><strong>Status:</strong> @Model.Status</p>
-
-<a class="btn btn-primary mt-3" href="/Medicine">Back</a>
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3>Medicine Details</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Barcode:</strong> @Model.ExternalMedicineId</p>
+            <p><strong>Quantity:</strong> @Model.Quantity</p>
+            <p><strong>Expiration:</strong> @Model.ExpirationDate.ToShortDateString()</p>
+            <p>
+                <strong>Status:</strong>
+                @if (Model.Status == "Expired")
+                {
+                    <span class="badge bg-danger">@Model.Status</span>
+                }
+                else if (Model.Status == "Low Stock")
+                {
+                    <span class="badge bg-warning text-dark">@Model.Status</span>
+                }
+                else
+                {
+                    <span class="badge bg-success">@Model.Status</span>
+                }
+            </p>
+        </div>
+        <div class="card-footer d-flex gap-2">
+            <a class="btn btn-secondary" href="/Medicine">Back</a>
+            <a class="btn btn-warning" href="/Medicine/Edit/@Model.Id">Edit</a>
+            <a class="btn btn-danger" href="/Medicine/Delete/@Model.Id">Delete</a>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,78 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "SmartMeds Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .home-wrapper {
+        background: linear-gradient(135deg, #4dc0b5, #2563eb);
+        color: white;
+        padding: 60px 20px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        max-width: 900px;
+        margin: 40px auto;
+        text-align: center;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .home-title {
+        font-size: 42px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .home-text {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .logo-box {
+        width: 200px;
+        height: 200px;
+        background: rgba(255,255,255,0.2);
+        border: 3px dashed white;
+        border-radius: 15px;
+        margin: 0 auto 25px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: white;
+    }
+
+    a.home-btn {
+        padding: 14px 28px;
+        background: white;
+        color: #2563eb;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.3s;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+        a.home-btn:hover {
+            background: #e2e8f0;
+            transform: translateY(-3px);
+        }
+</style>
+
+<div class="home-wrapper">
+
+    <div class="logo-box">
+        <img src="~/images/logo2.png" class="img-fluid" style="max-height: 180px;" />
+    </div>
+
+    <h1 class="home-title">Welcome to SmartMeds</h1>
+
+    <p class="home-text">
+        Your modern platform for managing hospitals, medicines and requests.
+        Everything is automated, fast, and beautifully designed.
+    </p>
+
+    <a href="/Hospital" class="home-btn">Enter the System</a>
+
 </div>
