@@ -7,5 +7,6 @@ namespace SmartMeds.Core.Interfaces
         Task<IEnumerable<Medicine>> GetAllMedicinesAsync();
         Task<Medicine?> GetMedicineByIdAsync(long id);
         Task<IEnumerable<Medicine>> GetMedicinesCloseToExpirationAsync(int daysThreshold = 30);
+        Task<Medicine> AddMedicineAsync(Medicine medicine);
     }
 }

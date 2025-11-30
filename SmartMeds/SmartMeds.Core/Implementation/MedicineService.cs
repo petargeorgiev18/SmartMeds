@@ -42,6 +42,11 @@ namespace SmartMeds.Core.Implementation
                 .Where(m => m.ExpirationDate >= today && m.ExpirationDate <= thresholdDate)
                 .ToListAsync();
         }
-
+        public async Task<Medicine> AddMedicineAsync(Medicine medicine)
+        {
+            await _context.Medicines.AddAsync(medicine);
+            await _context.SaveChangesAsync();
+            return medicine;
+        }
     }
 }
