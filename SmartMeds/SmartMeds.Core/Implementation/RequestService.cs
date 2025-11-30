@@ -63,5 +63,23 @@ namespace SmartMeds.Core.Implementation
                 .AsNoTracking()
                 .ToListAsync();
         }
+
+        public async Task<Request> AddRequestAsync(Request request)
+        {
+            await _context.Requests.AddAsync(request);
+            await _context.SaveChangesAsync();
+            return request;
+        }
+
+        public async Task<bool> UpdateRequestStatusAsync(long requestId, RequestStatus newStatus)
+        {
+            var request = await _context.Requests.FindAsync(requestId);
+            if (request == null)
+                return false;
+
+            request.Status = newStatus;
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }
