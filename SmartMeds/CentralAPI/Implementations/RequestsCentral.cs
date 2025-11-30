@@ -34,29 +34,62 @@ namespace CentralAPI.Implementations
                 .ToList();
         }
 
-        public List<Request> GetAllPendingAsync(long hospitalId)
+        public async Task<List<Request>> GetAllPendingAsync(long hospitalId)
         {
-            throw new NotImplementedException();
+
+            var res = await _httpClient.GetAsync(BASE_URL + "/get-about-hospital/" + hospitalId);
+            res.EnsureSuccessStatusCode();
+
+            var json = await res.Content.ReadAsStringAsync();
+
+            List<RequestDTO> requestDTOs = JsonConvert.DeserializeObject<List<RequestDTO>>(json);
+
+            return requestDTOs
+                .Select(x => x.toRequest())
+                .Where(x => x.Status == SmartMeds.Data.Enums.RequestStatus.Pending)
+                .ToList();
         }
 
-        public Request GetByIdAsync(long id)
+        public async Task<Request> GetByIdAsync(long id)
         {
-            throw new NotImplementedException();
+            var res = await _httpClient.GetAsync(BASE_URL + "/get/" + id);
+            res.EnsureSuccessStatusCode();
+
+            var json = await res.Content.ReadAsStringAsync();
+
+            RequestDTO requestDTOs = JsonConvert.DeserializeObject<RequestDTO>(json);
+
+            return requestDTOs.toRequest();
         }
 
-        public List<Request> GetByStatusAsync(long hospitalId, string status)
+        async Task<List<Request>> IRequsetsCentral.GetByStatusAsync(long hospitalId, string status)
         {
-            throw new NotImplementedException();
+
+            var res = await _httpClient.GetAsync(BASE_URL + $"/get-about-hospital-by-status/{hospitalId}?status={status}");
+            res.EnsureSuccessStatusCode();
+
+            var json = await res.Content.ReadAsStringAsync();
+
+            List<RequestDTO> requestDTOs = JsonConvert.DeserializeObject<List<RequestDTO>>(json);
+
+            return requestDTOs
+                .Select(x => x.toRequest())
+                .ToList();
         }
 
-        public List<Request> GetRequestsForHospitalAsync(long hospitalId, long targetHospitalId)
+        async Task<List<Request>> IRequsetsCentral.GetRequestsForHospitalAsync(long hospitalId, long targetHospitalId)
         {
-            throw new NotImplementedException();
-        }
+            var res = await _httpClient.GetAsync(BASE_URL + "/get-from-hospital/" + hospitalId);
+            res.EnsureSuccessStatusCode();
 
-        List<Request> IRequsetsCentral.GetAllAsync(long hospitalId)
-        {
-            throw new NotImplementedException();
+            var json = await res.Content.ReadAsStringAsync();
+
+            List<RequestDTO> requestDTOs = JsonConvert.DeserializeObject<List<RequestDTO>>(json);
+
+            return requestDTOs
+                .Select(x => x.toRequest())
+                .Where(x => x.ToHospitalId == targetHospitalId)
+                .ToList();
         }
     }
 }

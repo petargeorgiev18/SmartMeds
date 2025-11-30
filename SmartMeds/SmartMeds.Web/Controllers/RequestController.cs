@@ -26,7 +26,7 @@ namespace SmartMeds.Web.Controllers
                 FromHospitalName = r.FromHospital.Name,
                 ToHospitalId = r.ToHospitalId,
                 ToHospitalName = r.ToHospital.Name,
-                MedicineName = r.ExternalMedicineId, 
+                MedicineName = "Paracetamol", 
                 Status = r.Status,
                 CreatedOn = DateTime.Now
             });
@@ -55,7 +55,7 @@ namespace SmartMeds.Web.Controllers
                 FromHospitalName = r.FromHospital.Name,
                 ToHospitalId = r.ToHospitalId,
                 ToHospitalName = r.ToHospital.Name,
-                MedicineName = r.ExternalMedicineId, 
+                MedicineName = "Paracetamol", 
                 Status = r.Status,
                 CreatedOn = DateTime.Now
             });

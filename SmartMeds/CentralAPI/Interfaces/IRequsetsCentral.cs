@@ -9,10 +9,10 @@ namespace CentralAPI.Interfaces
 {
     internal interface IRequsetsCentral
     {
-        List<Request> GetAllAsync(long hospitalId);
-        List<Request> GetAllPendingAsync(long hospitalId);
-        Request GetByIdAsync(long id);
-        List<Request> GetByStatusAsync(long hospitalId, string status);
-        List<Request> GetRequestsForHospitalAsync(long hospitalId, long targetHospitalId);
+        Task<List<Request>> GetAllAsync(long hospitalId);
+        Task<List<Request>> GetAllPendingAsync(long hospitalId);
+        Task<Request> GetByIdAsync(long id);
+        Task<List<Request>> GetByStatusAsync(long hospitalId, string status);
+        Task<List<Request>> GetRequestsForHospitalAsync(long hospitalId, long targetHospitalId);
     }
 }
