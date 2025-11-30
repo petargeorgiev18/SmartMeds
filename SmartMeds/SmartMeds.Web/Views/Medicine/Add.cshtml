@@ -40,38 +40,37 @@
     .add-medicine-card {
         border-radius: 16px;
         overflow: hidden;
-        background: #fafafa;
-        border: 1px solid #e0e0e0;
+        background: linear-gradient(145deg, #e0f7fa, #ffffff);
+        border: none;
         transition: transform 0.2s, box-shadow 0.3s;
     }
 
         .add-medicine-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
         }
 
         .add-medicine-card .card-header {
-            background: #f5f5f5;
-            color: #37474f;
+            background: linear-gradient(90deg, #26c6da, #00acc1);
+            color: #fff;
             font-weight: 600;
             font-size: 1.25rem;
             text-align: center;
-            border-bottom: 1px solid #e0e0e0;
+            border-radius: 16px 16px 0 0;
             padding: 15px;
         }
 
     /* Inputs */
     .custom-input {
         border-radius: 12px;
-        border: 1px solid #cfd8dc;
+        border: 1px solid #b0bec5;
         padding: 10px;
-        background: #ffffff;
         transition: 0.2s;
     }
 
         .custom-input:focus {
-            border-color: #90a4ae;
-            box-shadow: 0 0 6px rgba(144,164,174,0.3);
+            border-color: #26c6da;
+            box-shadow: 0 0 8px rgba(38,198,218,0.4);
             outline: none;
         }
 
@@ -79,40 +78,28 @@
     .custom-select {
         border-radius: 12px;
         padding: 10px;
-        border: 1px solid #cfd8dc;
-        background: #ffffff;
+        border: 1px solid #b0bec5;
         transition: 0.2s;
     }
 
         .custom-select:focus {
-            border-color: #90a4ae;
-            box-shadow: 0 0 6px rgba(144,164,174,0.3);
+            border-color: #26c6da;
+            box-shadow: 0 0 8px rgba(38,198,218,0.4);
             outline: none;
         }
 
     /* Button Gradient */
-    .btn-soft-gradient {
-        background: linear-gradient(120deg, #e0f2f1, #f1f8e9);
-        color: #37474f;
+    .btn-gradient {
+        background: linear-gradient(90deg, #26c6da, #00acc1);
+        color: #fff;
         font-weight: 600;
         border-radius: 12px;
-        border: none;
         transition: 0.3s;
     }
 
-        .btn-soft-gradient:hover {
-            background: linear-gradient(120deg, #c8e6c9, #b2dfdb);
-            color: #263238;
-            transform: scale(1.03);
+        .btn-gradient:hover {
+            background: linear-gradient(90deg, #00acc1, #26c6da);
+            color: #fff;
+            transform: scale(1.05);
         }
-
-    /* Text Colors */
-    label {
-        font-weight: 500;
-        color: #37474f;
-    }
-
-    .text-danger {
-        font-size: 0.85rem;
-    }
 </style>
