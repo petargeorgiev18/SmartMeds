@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SmartMeds.Web.Models
@@ -20,5 +21,9 @@ namespace SmartMeds.Web.Models
 
         [Required]
         public string ImageUrl { get; set; }
+
+        public string? SelectedMedicineId { get; set; }
+
+        public List<SelectListItem> Medicines { get; set; } = new();
     }
 }

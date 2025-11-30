@@ -2,6 +2,7 @@
 using BarcodeAPI.Interfaces;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SmartMeds.Core.Interfaces;
 using SmartMeds.Data.Entities;
 using SmartMeds.Web.Models;
@@ -77,20 +78,40 @@ namespace SmartMeds.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
+            var medicines = await _medicineService.GetAllMedicinesAsync();
+
             var model = new AddMedicineViewModel
             {
-                ExpirationDate = DateTime.Today.AddMonths(3)
+                ExpirationDate = DateTime.Today.AddMonths(3),
+                Medicines = medicines
+                    .Select(m => new SelectListItem
+                    {
+                        Value = m.Id.ToString(),
+                        Text = $"{m.Name} — {m.ExpirationDate:yyyy-MM-dd}"
+                    })
+                    .ToList()
             };
+
             return View(model);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Add(AddMedicineViewModel model)
         {
             if (!ModelState.IsValid)
             {
+                var medicines = await _medicineService.GetAllMedicinesAsync();
+                model.Medicines = medicines
+                    .Select(m => new SelectListItem
+                    {
+                        Value = m.Id.ToString(),
+                        Text = $"{m.Name} — {m.ExpirationDate:yyyy-MM-dd}"
+                    })
+                    .ToList();
+
                 return View(model);
             }
 

@@ -6,16 +6,20 @@
             <h3>Add Medicine</h3>
         </div>
         <div class="card-body">
+
             <form asp-action="Add" method="post">
+
+                <!-- DROPDOWN -->
                 <div class="mb-3">
-                    <label asp-for="ExternalMedicineId" class="form-label"></label>
-                    <input asp-for="ExternalMedicineId" class="form-control" placeholder="Enter barcode or external ID" />
-                    <span asp-validation-for="ExternalMedicineId" class="text-danger"></span>
+                    <label class="form-label">Select Existing Medicine</label>
+                    <select asp-for="SelectedMedicineId" asp-items="Model.Medicines" class="form-control">
+                        <option value="">-- Select Medicine --</option>
+                    </select>
                 </div>
 
                 <div class="mb-3">
                     <label asp-for="Quantity" class="form-label"></label>
-                    <input asp-for="Quantity" class="form-control" placeholder="Enter quantity" />
+                    <input asp-for="Quantity" class="form-control" />
                     <span asp-validation-for="Quantity" class="text-danger"></span>
                 </div>
 
@@ -25,14 +29,15 @@
                     <span asp-validation-for="ExpirationDate" class="text-danger"></span>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="ImageUrl"></label>
-                    <input asp-for="ImageUrl" type="date" class="form-control" />
+                <div class="mb-3">
+                    <label asp-for="ImageUrl" class="form-label"></label>
+                    <input asp-for="ImageUrl" class="form-control" />
                     <span asp-validation-for="ImageUrl" class="text-danger"></span>
                 </div>
 
                 <button type="submit" class="btn btn-primary mt-3">Add Medicine</button>
+
             </form>
-        </div>   
+        </div>
     </div>
 </div>
