@@ -22,6 +22,7 @@ namespace SmartMeds.Web.Controllers
             var model = medicines.Select(m => new MedicineViewModel
             {
                 Id = m.Id,
+                Name = m.Name,
                 ExternalMedicineId = m.ExternalMedicineId,
                 Quantity = m.Quantity,
                 ExpirationDate = m.ExpirationDate,
@@ -41,6 +42,7 @@ namespace SmartMeds.Web.Controllers
             var model = new MedicineViewModel
             {
                 Id = m.Id,
+                Name = m.Name,
                 ExternalMedicineId = m.ExternalMedicineId,
                 Quantity = m.Quantity,
                 ExpirationDate = m.ExpirationDate,
@@ -58,6 +60,7 @@ namespace SmartMeds.Web.Controllers
             var model = medicines.Select(m => new MedicineViewModel
             {
                 Id = m.Id,
+                Name = m.Name,
                 ExternalMedicineId = m.ExternalMedicineId,
                 Quantity = m.Quantity,
                 ExpirationDate = m.ExpirationDate,

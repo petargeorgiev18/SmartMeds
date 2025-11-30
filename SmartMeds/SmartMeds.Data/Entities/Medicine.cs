@@ -11,6 +11,7 @@ namespace SmartMeds.Data.Entities
     public class Medicine
     {
         public long Id { get; set; }
+        public string Name { get; set; }
         public string ExternalMedicineId { get; set; } = null!;
         public int Quantity { get;set; }
         public DateTime ExpirationDate { get; set; }

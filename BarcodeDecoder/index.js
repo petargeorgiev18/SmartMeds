@@ -19,17 +19,20 @@ Body: image=<image.png>
 app.post("/decode", async (req, res) => {
   try {
     const { imageUrl } = req.body;
-    if (!imageUrl) return res.status(400).json({ error: "No image URL provided" });
+    if (!imageUrl)
+      return res.status(400).json({ error: "No image URL provided" });
 
-    const { data: { text } } = await Tesseract.recognize(
+    const {
+      data: { text },
+    } = await Tesseract.recognize(
       imageUrl, // Pass the URL directly
       "eng",
-      { logger: m => console.log(m) } // optional progress logs
+      { logger: (m) => console.log(m) } // optional progress logs
     );
 
     // Extract digits (barcode)
     const barcode = text.match(/\d+/g)?.join("") || null;
-    
+
     const lookupURL =
       "https://api.upcitemdb.com/prod/trial/lookup?upc=" + barcode;
 
@@ -46,6 +49,7 @@ app.post("/decode", async (req, res) => {
     res.json({
       success: true,
       title: productData?.items?.[0]?.title || "Unknown Product",
+      id: barcode,
     });
   } catch (err) {
     res.json({
@@ -57,8 +61,9 @@ app.post("/decode", async (req, res) => {
 
 // Start server
 const port = process.env.PORT || 3600;
-app.listen(port, () => console.log(`Barcode microservice running on port ${port}`));
-
+app.listen(port, () =>
+  console.log(`Barcode microservice running on port ${port}`)
+);
 
 /*
 * Sample response from UPCItemDB API
