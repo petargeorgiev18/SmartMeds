@@ -12,7 +12,7 @@ namespace SmartMeds.Web.Models
         public long MedicineId { get; set; }
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Price must be positive.")]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public List<SelectListItem> MedicineOptions { get; set; } = new();
     }
 }

@@ -13,5 +13,6 @@ namespace CentralAPI.Interfaces
         public Task<List<Listing>> GetMyListings(long hospitalId);
         public Task<List<Listing>> GetOtherListings(long hospitalId);
         public Task<bool> Delete(long hospitalId, long listingId);
+        public Task<Listing> GetById(long id);
     }
 }

@@ -36,7 +36,9 @@ namespace SmartMeds.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(long id)
         {
-            var listing = await _listingService.GetListingByIdAsync(id);
+            //var listing = await _listingService.GetListingByIdAsync(id);
+            var listing = await _listingService.FetchListingByIdAsync(id);
+            
             if (listing == null)
                 return NotFound();
 
@@ -122,7 +124,7 @@ namespace SmartMeds.Web.Controllers
                 Price = model.Price
             };
 
-            await _listingService.CreateListingAsync(listing);
+            await _listingService.CreateListingAsync(Program.HospitalId, listing);
             return RedirectToAction(nameof(Index));
         }
     }

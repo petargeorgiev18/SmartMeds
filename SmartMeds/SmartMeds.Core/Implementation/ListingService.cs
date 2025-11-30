@@ -30,7 +30,10 @@ namespace SmartMeds.Core.Implementation
                 .AsNoTracking()
                 .ToListAsync();
         }
-
+        public async Task<Listing> FetchListingByIdAsync(long id)
+        {
+            return await _listingsAPI.GetById(id);
+        }
         public async Task<Listing?> GetListingByIdAsync(long id)
         {
             return await _context.Listings
@@ -48,8 +51,10 @@ namespace SmartMeds.Core.Implementation
                 .ToListAsync();
         }
 
-        public async Task CreateListingAsync(Listing listing)
+        public async Task CreateListingAsync(long hospitalId, Listing listing)
         {
+            await _listingsAPI.Create(hospitalId, (double)listing.Price, listing.Medicine.ExpirationDate, listing.Quantity, listing.MedicineId);
+
             _context.Listings.Add(listing);
             await _context.SaveChangesAsync();
         }

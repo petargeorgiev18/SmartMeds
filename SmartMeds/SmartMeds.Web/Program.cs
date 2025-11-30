@@ -11,6 +11,7 @@ namespace SmartMeds.Web
 {
     public class Program
     {
+        public static long HospitalId = 1;
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);

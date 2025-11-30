@@ -44,6 +44,18 @@ namespace CentralAPI.Implementations
             throw new NotImplementedException();
         }
 
+        public async Task<Listing> GetById(long id)
+        {
+            var response = await _httpClient.GetAsync(BASE_URL + "/get/" + id);
+            response.EnsureSuccessStatusCode();
+
+            string json = await response.Content.ReadAsStringAsync();
+
+            ListingDTO listing = JsonConvert.DeserializeObject<ListingDTO>(json);
+
+            return listing?.ToListing();
+        }
+
         public async Task<List<Listing>> GetMyListings(long hospitalId)
         {
             var response = await _httpClient.GetAsync(BASE_URL + "/get-by-hospital/" + hospitalId);
@@ -75,5 +87,7 @@ namespace CentralAPI.Implementations
                 .Select(x => x.ToListing())
                 .ToList();
         }
+
+
     }
 }
