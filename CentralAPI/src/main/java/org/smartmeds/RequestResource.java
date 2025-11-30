@@ -123,4 +123,17 @@ public class RequestResource {
             return Response.serverError().build();
         }
     }
+
+    @GET
+    @Path("/get-about-hospital-by-status/{hospitalId}")
+    @Produces(MediaType.APPLICATION_JSON)
+
+    public Response getByStatusAboutHospital(@PathParam("hospitalId")Long hospitalId, @QueryParam("status") String status) {
+        try{
+            List<Request> res = service.getAllAboutHospitalByStatus(hospitalId, status);
+            return Response.ok().entity(res).build();
+        }catch (Exception e){
+            return Response.serverError().build();
+        }
+    }
 }
