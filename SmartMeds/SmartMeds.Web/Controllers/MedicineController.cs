@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmartMeds.Core.Interfaces;
+using SmartMeds.Data.Entities;
 using SmartMeds.Web.Models;
 
 namespace SmartMeds.Web.Controllers
@@ -66,6 +67,36 @@ namespace SmartMeds.Web.Controllers
             ViewBag.DaysThreshold = days;
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            var model = new AddMedicineViewModel
+            {
+                ExpirationDate = DateTime.Today.AddMonths(3)
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddMedicineViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var medicine = new Medicine
+            {
+                ExternalMedicineId = model.ExternalMedicineId,
+                Quantity = model.Quantity,
+                ExpirationDate = model.ExpirationDate
+            };
+
+            await _medicineService.AddMedicineAsync(medicine);
+
+            return RedirectToAction("Index", "Medicines");
         }
     }
 }
