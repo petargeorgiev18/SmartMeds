@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<ListingViewModel>
 
 <div class="container mt-4">
-    <h2>Listings for Selected Medicine</h2>
-
-    <a href="/Listing" class="btn btn-secondary mb-3">Back to All Listings</a>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Listings for Selected Medicine</h2>
+        <a href="/Listing" class="btn btn-secondary">Back to All Listings</a>
+    </div>
 
     @if (!Model.Any())
     {
@@ -11,28 +12,23 @@
     }
     else
     {
-        <table class="table table-striped table-hover">
-            <thead class="table-dark">
-                <tr>
-                    <th>Medicine</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var l in Model)
-                {
-                    <tr>
-                        <td>@l.MedicineName</td>
-                        <td>@l.Price.ToString("C")</td>
-                        <td>
-                            <a class="btn btn-sm btn-primary" href="/Listing/Details/@l.Id">Details</a>
-                            <a class="btn btn-sm btn-warning" href="/Listing/Edit/@l.Id">Edit</a>
-                            <a class="btn btn-sm btn-danger" href="/Listing/Delete/@l.Id">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <div class="row g-3">
+            @foreach (var l in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-0" style="border-radius:12px; background-color:#f4f9f9;">
+                        <div class="card-body">
+                            <h5 class="card-title">@l.MedicineName</h5>
+                            <p><strong>Price:</strong> @l.Price.ToString("C")</p>
+                            <div class="d-flex gap-2 mt-2">
+                                <a class="btn btn-sm btn-outline-primary" href="/Listing/Details/@l.Id">Details</a>
+                                <a class="btn btn-sm btn-outline-warning" href="/Listing/Edit/@l.Id">Edit</a>
+                                <a class="btn btn-sm btn-outline-danger" href="/Listing/Delete/@l.Id">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     }
 </div>
