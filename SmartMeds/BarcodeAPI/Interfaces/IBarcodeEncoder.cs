@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BarcodeAPI.Implementation;
 
 namespace BarcodeAPI.Interfaces
 {
     internal interface IBarcodeEncoder
     {
-        Task<String> GetTitleByBarcode(string imageUrl);
+        Task<BarcodeResponseFormat> GetTitleByBarcode(string imageUrl);
 
-        Task<Boolean> CheckHealth();
+        Task<bool> CheckHealth();
     }
 }

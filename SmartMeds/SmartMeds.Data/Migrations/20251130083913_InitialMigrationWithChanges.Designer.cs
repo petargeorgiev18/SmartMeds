@@ -12,8 +12,8 @@ using SmartMeds.Data;
 namespace SmartMeds.Data.Migrations
 {
     [DbContext(typeof(SmartMedsDbContext))]
-    [Migration("20251130011551_Init")]
-    partial class Init
+    [Migration("20251130083913_InitialMigrationWithChanges")]
+    partial class InitialMigrationWithChanges
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -222,6 +222,10 @@ namespace SmartMeds.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -238,12 +242,17 @@ namespace SmartMeds.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("ExternalMedicineId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("ExternalMedicineId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("FromHospitalId")
                         .HasColumnType("bigint");
+
+                    b.Property<DateTime>("PostedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
