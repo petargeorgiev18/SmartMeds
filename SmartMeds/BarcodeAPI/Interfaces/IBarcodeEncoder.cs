@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BarcodeAPI.Implementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace BarcodeAPI.Interfaces
 {
     internal interface IBarcodeEncoder
     {
-        Task<String> GetTitleByBarcode(string imageUrl);
+        Task<BarcodeResponseFormat> GetTitleByBarcode(string imageUrl);
 
         Task<Boolean> CheckHealth();
     }

@@ -19,6 +19,7 @@ namespace SmartMeds.Data.Entities
         public Hospital ToHospital { get; set; } = null!;
         public long ExternalMedicineId { get; set; }
         public int Quantity { get; set; }
+        public string Name { get; set; }
         public RequestStatus Status { get; set; } = RequestStatus.Pending;
         public DateTime ExpirationDate { get; set; }
         public DateTime PostedAt { get; set; }

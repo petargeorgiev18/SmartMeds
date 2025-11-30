@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartMeds.Data;
 
@@ -11,9 +12,11 @@ using SmartMeds.Data;
 namespace SmartMeds.Data.Migrations
 {
     [DbContext(typeof(SmartMedsDbContext))]
-    partial class SmartMedsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251130085032_Medicine-add-name")]
+    partial class Medicineaddname
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -247,10 +250,6 @@ namespace SmartMeds.Data.Migrations
 
                     b.Property<long>("FromHospitalId")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PostedAt")
                         .HasColumnType("datetime2");
