@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SmartMeds.Web.Models
 {
     public class AddMedicineViewModel
     {
-        [Required]
+        [AllowNull]
         [Display(Name = "External Medicine ID")]
         public string ExternalMedicineId { get; set; } = null!;
 
@@ -21,9 +22,5 @@ namespace SmartMeds.Web.Models
 
         [Required]
         public string ImageUrl { get; set; }
-
-        public string? SelectedMedicineId { get; set; }
-
-        public List<SelectListItem> Medicines { get; set; } = new();
     }
 }

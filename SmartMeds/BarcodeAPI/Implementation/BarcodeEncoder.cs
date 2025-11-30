@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,9 +15,9 @@ namespace BarcodeAPI.Implementation
     {
         private readonly HttpClient _httpClient;
 
-        public BarcodeEncoder(HttpClient httpClient)
+        public BarcodeEncoder(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClientFactory.CreateClient();
         }
 
         public async Task<BarcodeResponseFormat> GetTitleByBarcode(string imageUrl)
@@ -29,7 +30,7 @@ namespace BarcodeAPI.Implementation
             var json = JsonConvert.SerializeObject(requestBody);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("https://localhost:3600/decode", content);
+            var response = await _httpClient.PostAsync("http://localhost:3600/decode", content);
 
             try
             {
@@ -47,7 +48,7 @@ namespace BarcodeAPI.Implementation
 
         public async Task<bool> CheckHealth()
         {
-            var response = await _httpClient.GetAsync("https://localhost:3600/health");
+            var response = await _httpClient.GetAsync("http://localhost:3600/health");
 
             return response.IsSuccessStatusCode;
         }
